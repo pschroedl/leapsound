@@ -60,7 +60,7 @@ $(document).ready(function(){
       return;
     }
 
-    if (frame.hands.length === 1){
+    if (frame.hands.length >= 1){
       leapControlledFrequency = frame.data.hands[0].palmPosition[1];
     }
 
