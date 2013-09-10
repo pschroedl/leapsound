@@ -1,52 +1,49 @@
+//not all all browsers support WebAudio API : AudioContext - use webKit prefaced for safari
+//TODO : move to init func
+if (typeof AudioContext !== "undefined") {
+    var context = new AudioContext();
+} else {
+  if (typeof webkitAudioContext !== "undefined") {
+    var context = new webkitAudioContext();
+} else {
+  throw new Error('WebAudio not supported - Try using Chrome or Safari');
+}
 
-var context;
+//initialize sound source/buffer
+var soundSource = context.createBufferSource();
 
-// Not all all browsers support AudioContext - use webKit prefaced for safari
-  if (typeof AudioContext !== "undefined") {
-      context = new AudioContext();
-  } else if (typeof webkitAudioContext !== "undefined") {
-      context = new webkitAudioContext();
-  } else {
-      throw new Error('AudioContext not supported. :(');
-  }
+//load sample file over http to our buffer
+//TODO : move to a service for the sampler
+var ajaxReq = new XMLHttpRequest(); 
+ajaxReq.open("GET","pzBeat.mp3",true);
+ajaxReq.responseType = "arraybuffer";
 
-  //initialize sound source/buffer
-  var soundSource = context.createBufferSource();
+//callback to start audio
+ajaxReq.onload = function(){
+  var soundBuffer = context.createBuffer(ajaxReq.response,false) //flag is set for stereo
+  soundSource.buffer = soundBuffer;
+  soundSource.loop = true;
+  soundSource.noteOn(0);
+};
 
-  //load sample file over http to our buffer
-  var ajaxReq = new XMLHttpRequest(); 
-  ajaxReq.open("GET","pzBeat.mp3",true);
-  ajaxReq.responseType = "arraybuffer";
-  ajaxReq.onload = function(){
-    //should I use decodeAudioBuffer here?
-    var soundBuffer = context.createBuffer(ajaxReq.response,false) //flag is set for stereo
-    soundSource.buffer = soundBuffer;
-    soundSource.loop = true;
-    soundSource.noteOn(0);
-    console.log("loaded mp3");
-  };
+//create/connect LP filter
+var filterNode = context.createBiquadFilter();
+filterNode.type = 0;  //lowpass
+filterNode.frequency.value = 1000;
 
-  //create/connect lowpass filter
-  var filterNode = context.createBiquadFilter();
-  filterNode.type = 0;
-  filterNode.frequency.value = 1000;
-  //attach it into the chain
-  soundSource.connect(filterNode);
-  filterNode.connect(context.destination);
-
-
+//attach LP filter into the chain
+soundSource.connect(filterNode);
+filterNode.connect(context.destination);
 
 $(document).ready(function(){
-  //play output
+  //Get Mp3 and start playing
   ajaxReq.send();
 
   var leapControlledFrequency = 200;
   var leapControlledResonance = 0;
 
-  //useing slider for now,
-  //connect to lowpass filter
-  //move this out of this synth file eventually
-
+  //using sliders for testing of sampler/filter engine
+  //TODO : move this out of this synth into view controller
   $(".freqSlider").change(function(){
     $(".freqDisplay").text(this.value);
     filterNode.frequency.value = this.value*100;
@@ -56,7 +53,7 @@ $(document).ready(function(){
     $(".qDisplay").text(this.value);
     filterNode.Q.value = this.value;
   });
-  
+
   Leap.loop(function(frame) {
 
     if (frame.hands.length < 1){
@@ -64,20 +61,15 @@ $(document).ready(function(){
     }
 
     if (frame.hands.length === 1){
-      //debugger;
       leapControlledFrequency = frame.data.hands[0].palmPosition[1];
-      //console.log(frame.hands[0].palmPosition.y);
     }
+
     if (frame.hands.length === 2){
       leapControlledResonance = frame.data.hands[1].palmPosition[1];
     }
 
     filterNode.frequency.value = leapControlledFrequency*10;
-    filterNode.Q.value = leapControlledResonance/20;
-    $(".freqDisplay").value = leapControlledFrequency*10;
-    $(".qDisplay").value = leapControlledResonance;
-    console.log("Frequency" + leapControlledFrequency);
-    console.log("Resonance" + leapControlledResonance);
+    filterNode.Q.value = leapControlledResonance/20;]
   });  
 
 });
