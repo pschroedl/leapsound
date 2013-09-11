@@ -69,7 +69,7 @@ $(document).ready(function(){
     }
 
     filterNode.frequency.value = leapControlledFrequency*10;
-    filterNode.Q.value = leapControlledResonance/20;]
+    filterNode.Q.value = leapControlledResonance/20;
   });  
 
 });
