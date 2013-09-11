@@ -1,17 +1,17 @@
 
-var context;
+var audioContext;
 
 // Not all all browsers support AudioContext - use webKit prefaced for safari
   if (typeof AudioContext !== "undefined") {
-      context = new AudioContext();
+      audioContext = new AudioContext();
   } else if (typeof webkitAudioContext !== "undefined") {
-      context = new webkitAudioContext();
+      audioContext = new webkitAudioContext();
   } else {
       throw new Error('AudioContext not supported. :(');
   }
 
   //initialize sound source/buffer
-  var soundSource = context.createBufferSource();
+  var soundSource = audioContext.createBufferSource();
 
   //load sample file over http to our buffer
   var ajaxReq = new XMLHttpRequest(); 
@@ -19,7 +19,7 @@ var context;
   ajaxReq.responseType = "arraybuffer";
   ajaxReq.onload = function(){
     //should I use decodeAudioBuffer here?
-    var soundBuffer = context.createBuffer(ajaxReq.response,false) //flag is set for stereo
+    var soundBuffer = audioContext.createBuffer(ajaxReq.response,false) //flag is set for stereo
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
     soundSource.noteOn(0);
@@ -27,14 +27,12 @@ var context;
   };
 
   //create/connect lowpass filter
-  var filterNode = context.createBiquadFilter();
+  var filterNode = audioContext.createBiquadFilter();
   filterNode.type = 0;
   filterNode.frequency.value = 1000;
   //attach it into the chain
   soundSource.connect(filterNode);
-  filterNode.connect(context.destination);
-
-
+  filterNode.connect(audioContext.destination);
 
 $(document).ready(function(){
   //play output
