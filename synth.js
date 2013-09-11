@@ -7,7 +7,7 @@ var audioContext;
   } else if (typeof webkitAudioContext !== "undefined") {
       audioContext = new webkitAudioContext();
   } else {
-      throw new Error('AudioContext not supported. :(');
+      throw new Error('AudioContext not supported - try Google Chrome Canary');
   }
 
   //initialize sound source/buffer
@@ -18,7 +18,6 @@ var audioContext;
   ajaxReq.open("GET","pzBeat.mp3",true);
   ajaxReq.responseType = "arraybuffer";
   ajaxReq.onload = function(){
-    //should I use decodeAudioBuffer here?
     var soundBuffer = audioContext.createBuffer(ajaxReq.response,false) //flag is set for stereo
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
@@ -30,7 +29,8 @@ var audioContext;
   var filterNode = audioContext.createBiquadFilter();
   filterNode.type = 0;
   filterNode.frequency.value = 1000;
-  //attach it into the chain
+
+  //attach filter into the chain
   soundSource.connect(filterNode);
   filterNode.connect(audioContext.destination);
 
@@ -61,10 +61,8 @@ $(document).ready(function(){
       return;
     }
 
-    if (frame.hands.length === 1){
-      //debugger;
+    if (frame.hands.length >= 1){
       leapControlledFrequency = frame.data.hands[0].palmPosition[1];
-      //console.log(frame.hands[0].palmPosition.y);
     }
     if (frame.hands.length === 2){
       leapControlledResonance = frame.data.hands[1].palmPosition[1];
@@ -72,10 +70,6 @@ $(document).ready(function(){
 
     filterNode.frequency.value = leapControlledFrequency*10;
     filterNode.Q.value = leapControlledResonance/20;
-    $(".freqDisplay").value = leapControlledFrequency*10;
-    $(".qDisplay").value = leapControlledResonance;
-    console.log("Frequency" + leapControlledFrequency);
-    console.log("Resonance" + leapControlledResonance);
   });  
 
 });
