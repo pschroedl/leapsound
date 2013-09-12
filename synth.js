@@ -1,5 +1,5 @@
-
-var audioContext;
+$(document).ready(function(){
+  var audioContext;
 
 // Not all all browsers support AudioContext - use webKit prefaced for safari
   if (typeof AudioContext !== "undefined") {
@@ -22,7 +22,6 @@ var audioContext;
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
     soundSource.noteOn(0);
-    console.log("loaded mp3");
   };
 
   //create/connect lowpass filter
@@ -34,29 +33,24 @@ var audioContext;
   soundSource.connect(filterNode);
   filterNode.connect(audioContext.destination);
 
-$(document).ready(function(){
   //play output
   ajaxReq.send();
 
+  //dat.gui provides sliders for parameters
+  var gui = new dat.GUI();
+  this.freq = filterNode.frequency.value;
+  this.Q = filterNode.Q.value;
+  gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
+    filterNode.frequency.value = newVal;
+  });
+  gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
+    filterNode.Q.value = newVal;
+  });
+
   var leapControlledFrequency = 200;
   var leapControlledResonance = 0;
-
-  //useing slider for now,
-  //connect to lowpass filter
-  //move this out of this synth file eventually
-
-  $(".freqSlider").change(function(){
-    $(".freqDisplay").text(this.value);
-    filterNode.frequency.value = this.value*100;
-  });
-
-  $(".qSlider").change(function(){
-    $(".qDisplay").text(this.value);
-    filterNode.Q.value = this.value;
-  });
   
   Leap.loop(function(frame) {
-
     if (frame.hands.length < 1){
       return;
     }
@@ -71,6 +65,7 @@ $(document).ready(function(){
     filterNode.frequency.value = leapControlledFrequency*10;
     filterNode.Q.value = leapControlledResonance/20;
   });  
+
 
 });
 
