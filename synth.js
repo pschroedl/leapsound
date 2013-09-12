@@ -1,7 +1,7 @@
 $(document).ready(function(){
   var audioContext;
 
-// Not all all browsers support AudioContext - use webKit prefaced for safari
+// Not all all browsers support AudioContext - use webKit prefix for safari
   if (typeof AudioContext !== "undefined") {
       audioContext = new AudioContext();
   } else if (typeof webkitAudioContext !== "undefined") {
@@ -22,6 +22,7 @@ $(document).ready(function(){
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
     soundSource.noteOn(0);
+    debugger;
   };
 
   //create/connect lowpass filter
@@ -40,16 +41,21 @@ $(document).ready(function(){
   var gui = new dat.GUI();
   this.freq = filterNode.frequency.value;
   this.Q = filterNode.Q.value;
+  this.loopEnd = soundSource.loopEnd;
+
   gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
     filterNode.frequency.value = newVal;
   });
   gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
     filterNode.Q.value = newVal;
   });
+  gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
+    soundSource.loopEnd = newVal;
+  });
 
   var leapControlledFrequency = 200;
   var leapControlledResonance = 0;
-  
+
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
       return;
