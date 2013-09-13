@@ -32,8 +32,11 @@ $(document).ready(function(){
   //create Low frequency oscillator
   var lfoNode = audioContext.createOscillator();
   lfoNode.type = "sine";
-  lfoNode.frequency = 300;
+  lfoNode.frequency.value = 10;
+  lfoNode.start(0);
+  //lfoNode.gain.value = 1000;
   lfoNode.connect(filterNode);
+  debugger;
   //attach filter and reverb into the chain
   soundSource.connect(filterNode);
   filterNode.connect(audioContext.destination);
@@ -46,7 +49,7 @@ $(document).ready(function(){
   this.freq = filterNode.frequency.value;
   this.Q = filterNode.Q.value;
   this.loopEnd = soundSource.loopEnd;
-  //this.LFORate = lfoNode.value;
+  this.LFORate = lfoNode.frequency.value;
 
   gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
     filterNode.frequency.value = newVal;
@@ -57,9 +60,9 @@ $(document).ready(function(){
   gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
     soundSource.loopEnd = newVal;
   });
-  // gui.add(this, 'LFORate').min(0).max(100).onChange(function(newVal){
-  //   soundSource.loopEnd = newVal;
-  // });
+  gui.add(this, 'LFORate').min(0).max(100).onChange(function(newVal){
+     lfoNode.frequency = newVal;
+  });
 
   var leapControlledFrequency = 200;
   var leapControlledLFORate = 10;
