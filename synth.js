@@ -31,11 +31,12 @@ $(document).ready(function(){
 
   //create Low frequency oscillator
   var lfoNode = audioContext.createOscillator();
+  var lfoGain = audioContext.createGainNode();
   lfoNode.type = "sine";
   lfoNode.frequency.value = 10;
-  lfoNode.start(0);
-  //lfoNode.gain.value = 1000;
-  lfoNode.connect(filterNode);
+  lfoGain.gain.value = 2000;
+  lfoNode.connect(lfoGain);
+  lfoGain.connect(filterNode.frequency);
   debugger;
   //attach filter and reverb into the chain
   soundSource.connect(filterNode);
@@ -43,13 +44,14 @@ $(document).ready(function(){
 
   //play output
   sampleReq.send();
-  
+  lfoNode.start(0);  
   //dat.gui provides sliders for parameters
   var gui = new dat.GUI();
   this.freq = filterNode.frequency.value;
   this.Q = filterNode.Q.value;
   this.loopEnd = soundSource.loopEnd;
   this.LFORate = lfoNode.frequency.value;
+  this.LFOGain = lfoGain.gain.value;
 
   gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
     filterNode.frequency.value = newVal;
@@ -60,8 +62,11 @@ $(document).ready(function(){
   gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
     soundSource.loopEnd = newVal;
   });
-  gui.add(this, 'LFORate').min(0).max(100).onChange(function(newVal){
-     lfoNode.frequency = newVal;
+  gui.add(this, 'LFORate').min(0).max(20).onChange(function(newVal){
+     lfoNode.frequency.value = newVal;
+  });
+  gui.add(this, 'LFOGain').min(0).max(5000).onChange(function(newVal){
+     lfoGain.gain.value = newVal;
   });
 
   var leapControlledFrequency = 200;
