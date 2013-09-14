@@ -1,7 +1,7 @@
 $(document).ready(function(){
 /* Init App*/
 
-  //init web audio
+  //Init web audio
   var audioContext;
 
   // Not all all browsers support AudioContext - use webKit prefix for safari
@@ -13,12 +13,12 @@ $(document).ready(function(){
       throw new Error('AudioContext not supported - try Google Chrome Canary');
   }
 
-  //initialize sound source/buffer - first node in sound chain ( TODO - make soundchain into array )
+  //Initialize sound source/buffer - first node in sound chain ( TODO - make soundchain into array )
   var soundSource = audioContext.createBufferSource();
 
 /* Http Service */
 
-  //load sample file over http to our buffer
+  //Load sample file over http to our buffer
   var sampleReq = new XMLHttpRequest(); 
   sampleReq.open("GET","hoover.wav",true);
   sampleReq.responseType = "arraybuffer";
@@ -59,7 +59,7 @@ $(document).ready(function(){
 
 /* View Param Init, View GUI. Init */
 
-  //dat.gui provides sliders for parameters
+  //dat.gui.js provides sliders for parameters
   var gui = new dat.GUI();
   this.freq = filterNode.frequency.value;
   this.Q = filterNode.Q.value;
@@ -71,31 +71,30 @@ $(document).ready(function(){
   this.LFORateScaling = 10;
   this.resonanceScaling = 20;
 
-  // gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
-  //   filterNode.frequency.value = newVal;
-  // });
-  // gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
-  //   filterNode.Q.value = newVal;
-  // });
-  // gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
-  //   soundSource.loopEnd = newVal;
-  // });
-  // gui.add(this, 'LFORate').min(0).max(20).onChange(function(newVal){
-  //    lfoNode.frequency.value = newVal;
-  // });
-  // gui.add(this, 'LFOGain').min(0).max(5000).onChange(function(newVal){
-  //    lfoGain.gain.value = newVal;
-  // });  
-  // gui.add(this, 'frequencyScaling').min(0).max(20).onChange(function(newVal){
-  //    frequencyScaling = newVal;
-  // });
-  // gui.add(this, 'resonanceScaling').min(0).max(20).onChange(function(newVal){
-  //    resonanceScaling = newVal;
-  // });
-  // gui.add(this, 'LFORateScaling').min(0).max(20).onChange(function(newVal){
-  //    LFORateScaling = newVal;
-  // });  
-
+  gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
+    filterNode.frequency.value = newVal;
+  });
+  gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
+    filterNode.Q.value = newVal;
+  });
+  gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
+    soundSource.loopEnd = newVal;
+  });
+  gui.add(this, 'LFORate').min(0).max(20).onChange(function(newVal){
+     lfoNode.frequency.value = newVal;
+  });
+  gui.add(this, 'LFOGain').min(0).max(5000).onChange(function(newVal){
+     lfoGain.gain.value = newVal;
+  });  
+  gui.add(this, 'frequencyScaling').min(0).max(20).onChange(function(newVal){
+     frequencyScaling = newVal;
+  });
+  gui.add(this, 'resonanceScaling').min(0).max(20).onChange(function(newVal){
+     resonanceScaling = newVal;
+  });
+  gui.add(this, 'LFORateScaling').min(0).max(20).onChange(function(newVal){
+     LFORateScaling = newVal;
+  });  
 
 /* Default var setting, control assignments */
 
