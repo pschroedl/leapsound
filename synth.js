@@ -18,7 +18,7 @@ $(document).ready(function(){
 /* Load sample file over http to our buffer */
 
   var getSample = new XMLHttpRequest(); 
-  getSample.open("GET","hoover.wav",true);
+  getSample.open("GET","synthstabbing.wav",true);
   getSample.responseType = "arraybuffer";
   getSample.onload = function(){
     var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
@@ -71,6 +71,7 @@ $(document).ready(function(){
   var gui = new dat.GUI();
   this.freq = filterNode.frequency.value;
   this.Q = filterNode.Q.value;
+  this.loopStart = soundSource.loopStart;
   this.loopEnd = soundSource.loopEnd;
   this.LFORate = lfoNode.frequency.value;
   this.LFOGain = lfoGain.gain.value;
@@ -87,6 +88,10 @@ $(document).ready(function(){
   .onChange(function(newVal){
     filterNode.Q.value = newVal;
   });
+  gui.add(this, 'loopStart').min(0).max(1)
+  .onChange(function(newVal){
+     soundSource.loopStart = newVal;
+  });
   gui.add(this, 'loopEnd').min(0).max(1)
   .onChange(function(newVal){
     soundSource.loopEnd = newVal;
@@ -99,18 +104,8 @@ $(document).ready(function(){
   .onChange(function(newVal){
      lfoGain.gain.value = newVal;
   });  
-  gui.add(this, 'frequencyScaling').min(0).max(20)
-  .onChange(function(newVal){
-     frequencyScaling = newVal;
-  });
-  gui.add(this, 'resonanceScaling').min(0).max(20)
-  .onChange(function(newVal){
-     resonanceScaling = newVal;
-  });
-  gui.add(this, 'LFORateScaling').min(0).max(20)
-  .onChange(function(newVal){
-     LFORateScaling = newVal;
-  });  
+
+
   
 /* Default var setting, control assignments */
 
@@ -146,7 +141,6 @@ $(document).ready(function(){
     //Assign changed gui.param and leap values to synth properties
 
     filterNode.frequency.value = leapControlledFrequency*10;
-    //soundSource.playbackRate.value = leapControlledFrequency/100;
     lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
     filterNode.Q.value = leapControlledResonance/10;
     
