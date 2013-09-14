@@ -44,6 +44,7 @@ $(document).ready(function(){
   var lfoNode = audioContext.createOscillator();
   lfoNode.type = "sine";
   lfoNode.frequency.value = 10;
+  lfoNode.start(0);
 
   //Gain node from the LFO to filer
   var lfoGain = audioContext.createGainNode();
@@ -79,28 +80,36 @@ $(document).ready(function(){
   this.LFORateScaling = 10;
   this.resonanceScaling = 20;
 
-  gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
+  gui.add(this, 'freq').min(0).max(20000)
+  .onChange(function(newVal){
     filterNode.frequency.value = newVal;
   });
-  gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
+  gui.add(this, 'Q').min(0).max(30)
+  .onChange(function(newVal){
     filterNode.Q.value = newVal;
   });
-  gui.add(this, 'loopEnd').min(0).max(1).onChange(function(newVal){
+  gui.add(this, 'loopEnd').min(0).max(1)
+  .onChange(function(newVal){
     soundSource.loopEnd = newVal;
   });
-  gui.add(this, 'LFORate').min(0).max(20).onChange(function(newVal){
+  gui.add(this, 'LFORate').min(0).max(20)
+  .onChange(function(newVal){
      lfoNode.frequency.value = newVal;
   });
-  gui.add(this, 'LFOGain').min(0).max(5000).onChange(function(newVal){
+  gui.add(this, 'LFOGain').min(0).max(5000)
+  .onChange(function(newVal){
      lfoGain.gain.value = newVal;
   });  
-  gui.add(this, 'frequencyScaling').min(0).max(20).onChange(function(newVal){
+  gui.add(this, 'frequencyScaling').min(0).max(20)
+  .onChange(function(newVal){
      frequencyScaling = newVal;
   });
-  gui.add(this, 'resonanceScaling').min(0).max(20).onChange(function(newVal){
+  gui.add(this, 'resonanceScaling').min(0).max(20)
+  .onChange(function(newVal){
      resonanceScaling = newVal;
   });
-  gui.add(this, 'LFORateScaling').min(0).max(20).onChange(function(newVal){
+  gui.add(this, 'LFORateScaling').min(0).max(20)
+  .onChange(function(newVal){
      LFORateScaling = newVal;
   });  
   
@@ -137,18 +146,25 @@ $(document).ready(function(){
 
     //Assign changed gui.param and leap values to synth properties
 
-    filterNode.frequency.value = leapControlledFrequency*10;
-    lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
-    filterNode.Q.value = leapControlledResonance/10;
+    // filterNode.frequency.value = leapControlledFrequency*10;
+    // lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
+    // filterNode.Q.value = leapControlledResonance/10;
     
-    //Debugging
+    // //Debugging
 
-    console.log("Filter Frequency : " + filterNode.frequency.value);
-    console.log("Filter Resonance : " + filterNode.Q.value);
-    console.log("LFO Rate : " + lfoNode.frequency.value);
+    // console.log("Filter Frequency : " 
+    //   + filterNode.frequency.value);
+    // console.log("Filter Resonance : " 
+    //   + filterNode.Q.value);
+    // console.log("LFO Rate : " 
+    //   + lfoNode.frequency.value);
 
-    console.log("(x,y,z) : " + leapControlledResonance + " " + leapControlledFrequency + " " + leapControlledLFORate);
-
+    // console.log("(x,y,z) : "
+    //   + leapControlledResonance 
+    //   + " " 
+    //   + leapControlledFrequency 
+    //   + " " 
+    //   + leapControlledLFORate);
   });  
 
 });
