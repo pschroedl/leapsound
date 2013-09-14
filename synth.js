@@ -95,8 +95,9 @@ $(document).ready(function(){
   var leapControlledResonance = 0;
 
   //main program loop
-  //polls loop frame for
-  //xyz of hand position
+  //polls (60xsecond)
+  //Leap.loop frame for
+  //xyz of hand position ( only open - more than 1 finger )
   //and controls 3 params from synth
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
@@ -119,7 +120,7 @@ $(document).ready(function(){
     console.log("Filter Frequency : " + filterNode.frequency.value);
     console.log("Filter Resonance : " + filterNode.Q.value);
     console.log("LFO Rate : " + lfoNode.frequency.value);
-    
+
     console.log("(x,y,z) : " + leapControlledResonance + " " + leapControlledFrequency + " " + leapControlledLFORate);
   });  
 
