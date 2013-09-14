@@ -46,12 +46,12 @@ $(document).ready(function(){
   lfoNode.start(0);
 
   //Gain node from the LFO to filer
-  var lfoGain = audioContext.createGainNode();
+  var lfoGain = audioContext.createGain();
   lfoGain.gain.value = 10;
   lfoNode.connect(lfoGain);
   lfoGain.connect(filterNode.frequency);
 
-  var outputGainNode = audioContext.createGainNode();
+  var outputGainNode = audioContext.createGain();
   outputGainNode.gain.value = 10;
   
   var compressorNode = audioContext.createDynamicsCompressor();
