@@ -59,90 +59,90 @@ $(document).ready(function(){
 
 /* View Param Init, View GUI. Init */
 
-//   //dat.gui provides sliders for parameters
-//   var gui = new dat.GUI();
-//   this.freq = filterNode.frequency.value;
-//   this.Q = filterNode.Q.value;
-//   this.loopEnd = soundSource.loopEnd;
-//   this.LFORate = lfoNode.frequency.value;
-//   this.LFOGain = lfoGain.gain.value;
+  //dat.gui provides sliders for parameters
+  var gui = new dat.GUI();
+  this.freq = filterNode.frequency.value;
+  this.Q = filterNode.Q.value;
+  this.loopEnd = soundSource.loopEnd;
+  this.LFORate = lfoNode.frequency.value;
+  this.LFOGain = lfoGain.gain.value;
 
-//   this.frequencyScaling = 0;
-//   this.LFORateScaling = 10;
-//   this.resonanceScaling = 20;
+  this.frequencyScaling = 0;
+  this.LFORateScaling = 10;
+  this.resonanceScaling = 20;
 
-//   // gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
-//   //   filterNode.frequency.value = newVal;
-//   // });
-//   // gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
-//   //   filterNode.Q.value = newVal;
-//   // });
-//   // gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
-//   //   soundSource.loopEnd = newVal;
-//   // });
-//   // gui.add(this, 'LFORate').min(0).max(20).onChange(function(newVal){
-//   //    lfoNode.frequency.value = newVal;
-//   // });
-//   // gui.add(this, 'LFOGain').min(0).max(5000).onChange(function(newVal){
-//   //    lfoGain.gain.value = newVal;
-//   // });  
-//   // gui.add(this, 'frequencyScaling').min(0).max(20).onChange(function(newVal){
-//   //    frequencyScaling = newVal;
-//   // });
-//   // gui.add(this, 'resonanceScaling').min(0).max(20).onChange(function(newVal){
-//   //    resonanceScaling = newVal;
-//   // });
-//   // gui.add(this, 'LFORateScaling').min(0).max(20).onChange(function(newVal){
-//   //    LFORateScaling = newVal;
-//   // });  
+  // gui.add(this, 'freq').min(0).max(20000).onChange(function(newVal){
+  //   filterNode.frequency.value = newVal;
+  // });
+  // gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
+  //   filterNode.Q.value = newVal;
+  // });
+  // gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
+  //   soundSource.loopEnd = newVal;
+  // });
+  // gui.add(this, 'LFORate').min(0).max(20).onChange(function(newVal){
+  //    lfoNode.frequency.value = newVal;
+  // });
+  // gui.add(this, 'LFOGain').min(0).max(5000).onChange(function(newVal){
+  //    lfoGain.gain.value = newVal;
+  // });  
+  // gui.add(this, 'frequencyScaling').min(0).max(20).onChange(function(newVal){
+  //    frequencyScaling = newVal;
+  // });
+  // gui.add(this, 'resonanceScaling').min(0).max(20).onChange(function(newVal){
+  //    resonanceScaling = newVal;
+  // });
+  // gui.add(this, 'LFORateScaling').min(0).max(20).onChange(function(newVal){
+  //    LFORateScaling = newVal;
+  // });  
 
 
-// /* Default var setting, control assignments */
+/* Default var setting, control assignments */
 
-//   //deal defaults
-//   var leapControlledFrequency = 200;
-//   var leapControlledLFORate = 10;
-//   var leapControlledLFOGain = 100;
-//   var leapControlledResonance = 0;
+  //deal defaults
+  var leapControlledFrequency = 200;
+  var leapControlledLFORate = 10;
+  var leapControlledLFOGain = 100;
+  var leapControlledResonance = 0;
 
-// /* Main program loop */
+/* Main program loop */
 
-//   //polls (60xsecond)
-//   //the Leap.loop frame for
-//   //xyz of hand position ( only open - 1 or more fingers )
-//   //and controls 3 params from synth
-//   //LPF Freq, Q, and LFO Rate
+  //polls (60xsecond)
+  //the Leap.loop frame for
+  //xyz of hand position ( only open - 1 or more fingers )
+  //and controls 3 params from synth
+  //LPF Freq, Q, and LFO Rate
 
-//   Leap.loop(function(frame) {
-//     if (frame.hands.length < 1){
-//       //outputGain.gain.value = 0;
-//       return;
-//     }
+  Leap.loop(function(frame) {
+    if (frame.hands.length < 1){
+      //outputGain.gain.value = 0;
+      return;
+    }
 
-//     if (frame.hands.length >= 1){
-//       if (frame.hands[0].fingers.length >= 2){
-//         //outputGain.gain.value = 10;
-//         leapControlledFrequency = frame.data.hands[0].palmPosition[1];
-//         leapControlledLFORate = frame.data.hands[0].palmPosition[2];
-//         leapControlledResonance = frame.data.hands[0].palmPosition[0];
-//       }
-//     }
+    if (frame.hands.length >= 1){
+      if (frame.hands[0].fingers.length >= 2){
+        //outputGain.gain.value = 10;
+        leapControlledFrequency = frame.data.hands[0].palmPosition[1];
+        leapControlledLFORate = frame.data.hands[0].palmPosition[2];
+        leapControlledResonance = frame.data.hands[0].palmPosition[0];
+      }
+    }
 
-//     //Assign changed gui.param and leap values to synth properties
+    //Assign changed gui.param and leap values to synth properties
 
-//     filterNode.frequency.value = leapControlledFrequency*10;
-//     lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
-//     filterNode.Q.value = leapControlledResonance/10;
+    filterNode.frequency.value = leapControlledFrequency*10;
+    lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
+    filterNode.Q.value = leapControlledResonance/10;
     
-//     //Debugging
+    //Debugging
 
-//     console.log("Filter Frequency : " + filterNode.frequency.value);
-//     console.log("Filter Resonance : " + filterNode.Q.value);
-//     console.log("LFO Rate : " + lfoNode.frequency.value);
+    console.log("Filter Frequency : " + filterNode.frequency.value);
+    console.log("Filter Resonance : " + filterNode.Q.value);
+    console.log("LFO Rate : " + lfoNode.frequency.value);
 
-//     console.log("(x,y,z) : " + leapControlledResonance + " " + leapControlledFrequency + " " + leapControlledLFORate);
+    console.log("(x,y,z) : " + leapControlledResonance + " " + leapControlledFrequency + " " + leapControlledLFORate);
 
-//   });  
+  });  
 
   sampleReq.send();
 });
