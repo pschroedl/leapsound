@@ -21,7 +21,6 @@ $(document).ready(function(){
   getSample.open("GET","hoover.wav",true);
   getSample.responseType = "arraybuffer";
   getSample.onload = function(){
-    debugger; 
     var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
@@ -146,25 +145,26 @@ $(document).ready(function(){
 
     //Assign changed gui.param and leap values to synth properties
 
-    // filterNode.frequency.value = leapControlledFrequency*10;
-    // lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
-    // filterNode.Q.value = leapControlledResonance/10;
+    filterNode.frequency.value = leapControlledFrequency*10;
+    //soundSource.playbackRate.value = leapControlledFrequency/100;
+    lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
+    filterNode.Q.value = leapControlledResonance/10;
     
-    // //Debugging
+    //Debugging
+    console.clear();
+    console.log("Filter Frequency : " 
+      + filterNode.frequency.value);
+    console.log("Filter Resonance : " 
+      + filterNode.Q.value);
+    console.log("LFO Rate : " 
+      + lfoNode.frequency.value);
 
-    // console.log("Filter Frequency : " 
-    //   + filterNode.frequency.value);
-    // console.log("Filter Resonance : " 
-    //   + filterNode.Q.value);
-    // console.log("LFO Rate : " 
-    //   + lfoNode.frequency.value);
-
-    // console.log("(x,y,z) : "
-    //   + leapControlledResonance 
-    //   + " " 
-    //   + leapControlledFrequency 
-    //   + " " 
-    //   + leapControlledLFORate);
+    console.log("(x,y,z) : "
+      + leapControlledResonance 
+      + " " 
+      + leapControlledFrequency 
+      + " " 
+      + leapControlledLFORate);
   });  
 
 });
