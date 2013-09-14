@@ -26,7 +26,9 @@ $(document).ready(function(){
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
     soundSource.start(0);
-  };
+  };  
+  getSample.send();
+
 
 /* Synth Signal Flow Definition 
   soundSource.buffer ==> filterNode ==> outputGainNode
@@ -117,8 +119,6 @@ $(document).ready(function(){
   //xyz of hand position ( only open - 1 or more fingers )
   //and controls 3 params from synth
   //LPF Freq, Q, and LFO Rate
-
-  getSample.send();
 
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
