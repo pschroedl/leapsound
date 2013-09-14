@@ -1,10 +1,9 @@
 $(document).ready(function(){
-/* Init App*/
+/* Check for HTML5 Web Audio - use webKit prefix for safari Web Audio API*/
+/* todo: add support for Firefox Web Audio Data API? */
 
-  //Init web audio
   var audioContext;
 
-  // Not all all browsers support AudioContext - use webKit prefix for safari
   if (typeof AudioContext !== "undefined") {
       audioContext = new AudioContext();
   } else if (typeof webkitAudioContext !== "undefined") {
@@ -16,9 +15,8 @@ $(document).ready(function(){
   //Initialize sound source/buffer - first node in sound chain ( TODO - make soundchain into array )
   var soundSource = audioContext.createBufferSource();
 
-/* Http Service */
+/* Load sample file over http to our buffer */
 
-  //Load sample file over http to our buffer
   var sampleReq = new XMLHttpRequest(); 
   sampleReq.open("GET","hoover.wav",true);
   sampleReq.responseType = "arraybuffer";
@@ -31,7 +29,10 @@ $(document).ready(function(){
     console.log("gotsound")
   };
 
-/* Synth Signal Flow Definition */
+/* Synth Signal Flow Definition 
+  soundSource.buffer ==> filterNode ==> outputGain ( should be node )
+
+*/
 
   //Create/connect lowpass filter
   var filterNode = audioContext.createBiquadFilter();
@@ -49,17 +50,22 @@ $(document).ready(function(){
   lfoGain.connect(filterNode.frequency);
 
   //Create final output gain node
-  var outputGain = audioContext.createGainNode();
-  outputGain.gain.value = 10;
+  var outputGainNode = audioContext.createGainNode();
+  outputGainNode.gain.value = 10;
 
   //Attach filter to the Main Volume then output
   soundSource.connect(filterNode);
-  filterNode.connect(outputGain);
-  outputGain.connect(audioContext.destination);
+  filterNode.connect(outputGainNode);
+  outputGainNode.connect(audioContext.destination);
 
 /* View Param Init, View GUI. Init */
 
   //dat.gui.js provides sliders for parameters
+
+  //definitely get this all out of here
+  //create a patch class for 
+  //routing and a patch.config object
+  //with these properties
   var gui = new dat.GUI();
   this.freq = filterNode.frequency.value;
   this.Q = filterNode.Q.value;
@@ -95,6 +101,7 @@ $(document).ready(function(){
   gui.add(this, 'LFORateScaling').min(0).max(20).onChange(function(newVal){
      LFORateScaling = newVal;
   });  
+  
 
 /* Default var setting, control assignments */
 
