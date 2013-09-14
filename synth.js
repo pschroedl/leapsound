@@ -29,8 +29,8 @@ $(document).ready(function(){
   };
 
 /* Synth Signal Flow Definition 
-  soundSource.buffer ==> filterNode ==> outputGain ( should be node )
-
+  soundSource.buffer ==> filterNode ==> outputGainNode
+  lfoNode=>lfoGain=>filterNode.Frequency^
 */
 
   //Create/connect lowpass filter
@@ -40,11 +40,12 @@ $(document).ready(function(){
 
   //Create Low frequency oscillator
   var lfoNode = audioContext.createOscillator();
-  //Control the Gain of the LFO to filer
-  var lfoGain = audioContext.createGainNode();
   lfoNode.type = "sine";
   lfoNode.frequency.value = 10;
-  lfoGain.gain.value = 2000;
+
+  //Gain node from the LFO to filer
+  var lfoGain = audioContext.createGainNode();
+  lfoGain.gain.value = 10;
   lfoNode.connect(lfoGain);
   lfoGain.connect(filterNode.frequency);
 
