@@ -20,14 +20,6 @@ $(document).ready(function(){
   getSample.send();
 
 /* View Param Init, View GUI. Init */
-
-  //dat.gui.js provides sliders for parameters
-
-  //definitely get this all out of here
-  //create a patch class for 
-  //routing and a patch.config object
-  //with these properties
- 
   addGui(sampler,soundSource);
 
 /* Default var setting, control assignments */
