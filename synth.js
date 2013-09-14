@@ -51,14 +51,16 @@ $(document).ready(function(){
   lfoNode.connect(lfoGain);
   lfoGain.connect(filterNode.frequency);
 
-  //Create final output gain node
   var outputGainNode = audioContext.createGainNode();
   outputGainNode.gain.value = 10;
+  
+  var compressorNode = audioContext.createDynamicsCompressor();
 
   //Attach filter to the Main Volume then output
   soundSource.connect(filterNode);
   filterNode.connect(outputGainNode);
-  outputGainNode.connect(audioContext.destination);
+  outputGainNode.connect(compressorNode);
+  compressorNode.connect(audioContext.destination);
 
 /* View Param Init, View GUI. Init */
 
