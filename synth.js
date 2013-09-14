@@ -1,7 +1,12 @@
 $(document).ready(function(){
+  //init web audio
   var audioContext;
 
-// Not all all browsers support AudioContext - use webKit prefix for safari
+  //initialize sound source/buffer - first node in sound chain ( TODO - make soundchain into array )
+  var soundSource = audioContext.createBufferSource();
+
+
+  // Not all all browsers support AudioContext - use webKit prefix for safari
   if (typeof AudioContext !== "undefined") {
       audioContext = new AudioContext();
   } else if (typeof webkitAudioContext !== "undefined") {
@@ -9,9 +14,6 @@ $(document).ready(function(){
   } else {
       throw new Error('AudioContext not supported - try Google Chrome Canary');
   }
-
-  //initialize sound source/buffer
-  var soundSource = audioContext.createBufferSource();
 
   //load sample file over http to our buffer
   var sampleReq = new XMLHttpRequest(); 
@@ -38,17 +40,17 @@ $(document).ready(function(){
   lfoNode.connect(lfoGain);
   lfoGain.connect(filterNode.frequency);
 
-  var outputGain = audioContext.createGainNode();
-  outputGain.gain.value = 10;
-
   //attach filter into the chain
   soundSource.connect(filterNode);
   filterNode.connect(outputGain);
+
+  //create final output gain node
+  var outputGain = audioContext.createGainNode();
+  outputGain.gain.value = 10;
+
+  //final gain to output
   outputGain.connect(audioContext.destination);
 
-  //play output
-  sampleReq.send();
-  lfoNode.start(0);  
   //dat.gui provides sliders for parameters
   var gui = new dat.GUI();
   this.freq = filterNode.frequency.value;
@@ -86,13 +88,16 @@ $(document).ready(function(){
      LFORateScaling = newVal;
   });  
 
-
+  //deal defaults
   var leapControlledFrequency = 200;
   var leapControlledLFORate = 10;
   var leapControlledLFOGain = 100;
   var leapControlledResonance = 0;
 
-
+  //main program loop
+  //polls loop frame for
+  //xyz of hand position
+  //and controls 3 params from synth
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
       //outputGain.gain.value = 0;
@@ -106,21 +111,15 @@ $(document).ready(function(){
         leapControlledLFORate = frame.data.hands[0].palmPosition[2];
         leapControlledResonance = frame.data.hands[0].palmPosition[0];
       }
-    }
-    if (frame.hands.length === 2){
-      //leapControlledLFORate = frame.data.hands[1].palmPosition[1];
-      //leapControlledLFOGain = frame.data.hands[1].palmPosition[0];
-    }
-
 
     filterNode.frequency.value = leapControlledFrequency*10;
     lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
-    //lfoGain.gain.value = leapControlledLFOGain;
     filterNode.Q.value = leapControlledResonance/10;
     
     console.log("Filter Frequency : " + filterNode.frequency.value);
     console.log("Filter Resonance : " + filterNode.Q.value);
     console.log("LFO Rate : " + lfoNode.frequency.value);
+    
     console.log("(x,y,z) : " + leapControlledResonance + " " + leapControlledFrequency + " " + leapControlledLFORate);
   });  
 
