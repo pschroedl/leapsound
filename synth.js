@@ -2,9 +2,9 @@ $(document).ready(function(){
 
   var audioContext = initAudioContext();  //throws error if Web Audio API or webkitAudio API is not avail.
   
-  //var sampler = SimpleSampler(soundSource);
-
   var soundSource = audioContext.createBufferSource();
+
+  var sampler =  new SimpleSampler(soundSource, audioContext);
 
 /* Load sample file over http to our buffer */
   
@@ -19,8 +19,7 @@ $(document).ready(function(){
   };  
   getSample.send();
 
-  var sampler = SimpleSampler(soundSource, audioContext);
-  
+
 /* View Param Init, View GUI. Init */
 
   //dat.gui.js provides sliders for parameters
@@ -30,12 +29,12 @@ $(document).ready(function(){
   //routing and a patch.config object
   //with these properties
   var gui = new dat.GUI();
-  this.freq = filterNode.frequency.value;
-  this.Q = filterNode.Q.value;
+  this.freq = sampler.filterNode.frequency.value;
+  this.Q = sampler.filterNode.Q.value;
   this.loopStart = soundSource.loopStart;
   this.loopEnd = soundSource.loopEnd;
-  this.LFORate = lfoNode.frequency.value;
-  this.LFOGain = lfoGain.gain.value;
+  this.LFORate = sampler.lfoNode.frequency.value;
+  this.LFOGain = sampler.lfoGain.gain.value;
 
   this.frequencyScaling = 0;
   this.LFORateScaling = 10;
@@ -43,15 +42,15 @@ $(document).ready(function(){
 
   gui.add(this, 'freq').min(0).max(20000)
   .onChange(function(newVal){
-    filterNode.frequency.value = newVal;
+    sampler.filterNode.frequency.value = newVal;
   });
   gui.add(this, 'Q').min(0).max(30)
   .onChange(function(newVal){
-    filterNode.Q.value = newVal;
+    sampler.filterNode.Q.value = newVal;
   });
   gui.add(this, 'loopStart').min(0).max(1)
   .onChange(function(newVal){
-     soundSource.loopStart = newVal;
+    soundSource.loopStart = newVal;
   });
   gui.add(this, 'loopEnd').min(0).max(1)
   .onChange(function(newVal){
@@ -59,11 +58,11 @@ $(document).ready(function(){
   });
   gui.add(this, 'LFORate').min(0).max(20)
   .onChange(function(newVal){
-     lfoNode.frequency.value = newVal;
+    sampler.lfoNode.frequency.value = newVal;
   });
   gui.add(this, 'LFOGain').min(0).max(5000)
   .onChange(function(newVal){
-     lfoGain.gain.value = newVal;
+    sampler.lfoGain.gain.value = newVal;
   });  
 
 
@@ -101,18 +100,18 @@ $(document).ready(function(){
 
     //Assign changed gui.param and leap values to synth properties
 
-    filterNode.frequency.value = leapControlledFrequency*10;
-    lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
-    filterNode.Q.value = leapControlledResonance/10;
+    sampler.filterNode.frequency.value = leapControlledFrequency*10;
+    sampler.lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
+    sampler.filterNode.Q.value = leapControlledResonance/10;
     
     //Debugging
     console.clear();
     console.log("Filter Frequency : " 
-      + filterNode.frequency.value);
+      + sampler.filterNode.frequency.value);
     console.log("Filter Resonance : " 
-      + filterNode.Q.value);
+      + sampler.filterNode.Q.value);
     console.log("LFO Rate : " 
-      + lfoNode.frequency.value);
+      + sampler.lfoNode.frequency.value);
 
     console.log("(x,y,z) : "
       + leapControlledResonance 

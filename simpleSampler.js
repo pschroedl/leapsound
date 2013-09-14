@@ -1,6 +1,4 @@
 var SimpleSampler = function(source, context){
-  var sampler = this;
-
 /* Synth Signal Flow Definition 
   soundSource.buffer ==> filterNode ==> outputGainNode
   lfoNode=>lfoGain=>filterNode.Frequency^
@@ -33,6 +31,4 @@ var SimpleSampler = function(source, context){
   this.filterNode.connect(this.outputGainNode);
   this.outputGainNode.connect(this.compressorNode);
   this.compressorNode.connect(context.destination);
-
-  return sampler;
 }
