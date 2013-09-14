@@ -21,7 +21,7 @@ $(document).ready(function(){
     var soundBuffer = audioContext.createBuffer(sampleReq.response,false) //flag is set for stereo
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
-    soundSource.noteOn(0);
+    soundSource.start(0);
   };
 
   //create/connect lowpass filter
@@ -38,10 +38,13 @@ $(document).ready(function(){
   lfoNode.connect(lfoGain);
   lfoGain.connect(filterNode.frequency);
 
+  var outputGain = audioContext.createGainNode();
+  outputGain.gain.value = 10;
 
   //attach filter into the chain
   soundSource.connect(filterNode);
-  filterNode.connect(audioContext.destination);
+  filterNode.connect(outputGain);
+  outputGain.connect(audioContext.destination);
 
   //play output
   sampleReq.send();
@@ -92,11 +95,13 @@ $(document).ready(function(){
 
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
+      //outputGain.gain.value = 0;
       return;
     }
 
     if (frame.hands.length >= 1){
       if (frame.hands[0].fingers.length >= 2){
+        //outputGain.gain.value = 10;
         leapControlledFrequency = frame.data.hands[0].palmPosition[1];
         leapControlledLFORate = frame.data.hands[0].palmPosition[2];
         leapControlledResonance = frame.data.hands[0].palmPosition[0];
