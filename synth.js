@@ -17,12 +17,12 @@ $(document).ready(function(){
 
 /* Load sample file over http to our buffer */
 
-  var sampleReq = new XMLHttpRequest(); 
-  sampleReq.open("GET","hoover.wav",true);
-  sampleReq.responseType = "arraybuffer";
-  sampleReq.onload = function(){
+  var getSample = new XMLHttpRequest(); 
+  getSample.open("GET","hoover.wav",true);
+  getSample.responseType = "arraybuffer";
+  getSample.onload = function(){
     debugger; 
-    var soundBuffer = audioContext.createBuffer(sampleReq.response,false) //flag is set for stereo
+    var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
     soundSource.start(0);
@@ -118,7 +118,7 @@ $(document).ready(function(){
   //and controls 3 params from synth
   //LPF Freq, Q, and LFO Rate
 
-  sampleReq.send();
+  getSample.send();
 
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
