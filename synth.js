@@ -19,7 +19,6 @@ $(document).ready(function(){
   };  
   getSample.send();
 
-
 /* View Param Init, View GUI. Init */
 
   //dat.gui.js provides sliders for parameters
@@ -28,45 +27,9 @@ $(document).ready(function(){
   //create a patch class for 
   //routing and a patch.config object
   //with these properties
-  var gui = new dat.GUI();
-  this.freq = sampler.filterNode.frequency.value;
-  this.Q = sampler.filterNode.Q.value;
-  this.loopStart = soundSource.loopStart;
-  this.loopEnd = soundSource.loopEnd;
-  this.LFORate = sampler.lfoNode.frequency.value;
-  this.LFOGain = sampler.lfoGain.gain.value;
+ 
+  addGui(sampler,soundSource);
 
-  this.frequencyScaling = 0;
-  this.LFORateScaling = 10;
-  this.resonanceScaling = 20;
-
-  gui.add(this, 'freq').min(0).max(20000)
-  .onChange(function(newVal){
-    sampler.filterNode.frequency.value = newVal;
-  });
-  gui.add(this, 'Q').min(0).max(30)
-  .onChange(function(newVal){
-    sampler.filterNode.Q.value = newVal;
-  });
-  gui.add(this, 'loopStart').min(0).max(1)
-  .onChange(function(newVal){
-    soundSource.loopStart = newVal;
-  });
-  gui.add(this, 'loopEnd').min(0).max(1)
-  .onChange(function(newVal){
-    soundSource.loopEnd = newVal;
-  });
-  gui.add(this, 'LFORate').min(0).max(20)
-  .onChange(function(newVal){
-    sampler.lfoNode.frequency.value = newVal;
-  });
-  gui.add(this, 'LFOGain').min(0).max(5000)
-  .onChange(function(newVal){
-    sampler.lfoGain.gain.value = newVal;
-  });  
-
-
-  
 /* Default var setting, control assignments */
 
   //deal defaults
@@ -119,7 +82,7 @@ $(document).ready(function(){
       + leapControlledFrequency 
       + " " 
       + leapControlledLFORate);
-    console.log("testing!");
+    console.log("testing!2");
   });  
 
 });
