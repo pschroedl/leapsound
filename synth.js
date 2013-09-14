@@ -26,7 +26,6 @@ $(document).ready(function(){
     soundSource.buffer = soundBuffer;
     soundSource.loop = true;
     soundSource.start(0);
-    console.log("gotsound")
   };
 
 /* Synth Signal Flow Definition 
@@ -83,7 +82,7 @@ $(document).ready(function(){
   gui.add(this, 'Q').min(0).max(30).onChange(function(newVal){
     filterNode.Q.value = newVal;
   });
-  gui.add(this, 'loopEnd').min(0).max(4).onChange(function(newVal){
+  gui.add(this, 'loopEnd').min(0).max(1).onChange(function(newVal){
     soundSource.loopEnd = newVal;
   });
   gui.add(this, 'LFORate').min(0).max(20).onChange(function(newVal){
@@ -102,7 +101,6 @@ $(document).ready(function(){
      LFORateScaling = newVal;
   });  
   
-
 /* Default var setting, control assignments */
 
   //deal defaults
@@ -120,7 +118,7 @@ $(document).ready(function(){
   //LPF Freq, Q, and LFO Rate
 
   sampleReq.send();
-  
+
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
       //outputGain.gain.value = 0;
