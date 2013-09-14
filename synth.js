@@ -1,22 +1,10 @@
 $(document).ready(function(){
-/* Check for HTML5 Web Audio - use webKit prefix for safari Web Audio API*/
-/* todo: add support for Firefox Web Audio Data API? */
 
-  var audioContext;
-
-  if (typeof AudioContext !== "undefined") {
-      audioContext = new AudioContext();
-  } else if (typeof webkitAudioContext !== "undefined") {
-      audioContext = new webkitAudioContext();
-  } else {
-      throw new Error('AudioContext not supported - try Google Chrome Canary');
-  }
-
-  //Initialize sound source/buffer - first node in sound chain ( TODO - make soundchain into array )
+  var audioContext = initAudioContext();  //throws error if Web Audio API or webkitAudio API is not avail.
   var soundSource = audioContext.createBufferSource();
 
 /* Load sample file over http to our buffer */
-
+  
   var getSample = new XMLHttpRequest(); 
   getSample.open("GET","synthstabbing.wav",true);
   getSample.responseType = "arraybuffer";
@@ -36,7 +24,7 @@ $(document).ready(function(){
 
   //Create/connect lowpass filter
   var filterNode = audioContext.createBiquadFilter();
-  filterNode.type = 0;
+  filterNode.type = "lowpass";
   filterNode.frequency.value = 1000;
 
   //Create Low frequency oscillator
