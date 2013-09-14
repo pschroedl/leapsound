@@ -119,6 +119,8 @@ $(document).ready(function(){
   //and controls 3 params from synth
   //LPF Freq, Q, and LFO Rate
 
+  sampleReq.send();
+  
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
       //outputGain.gain.value = 0;
@@ -150,6 +152,5 @@ $(document).ready(function(){
 
   });  
 
-  sampleReq.send();
 });
 
