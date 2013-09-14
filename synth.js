@@ -1,6 +1,9 @@
 $(document).ready(function(){
 
   var audioContext = initAudioContext();  //throws error if Web Audio API or webkitAudio API is not avail.
+  
+  //var sampler = SimpleSampler(soundSource);
+
   var soundSource = audioContext.createBufferSource();
 
 /* Load sample file over http to our buffer */
@@ -16,40 +19,8 @@ $(document).ready(function(){
   };  
   getSample.send();
 
-
-/* Synth Signal Flow Definition 
-  soundSource.buffer ==> filterNode ==> outputGainNode
-  lfoNode=>lfoGain=>filterNode.Frequency^
-*/
-
-  //Create/connect lowpass filter
-  var filterNode = audioContext.createBiquadFilter();
-  filterNode.type = "lowpass";
-  filterNode.frequency.value = 1000;
-
-  //Create Low frequency oscillator
-  var lfoNode = audioContext.createOscillator();
-  lfoNode.type = "sine";
-  lfoNode.frequency.value = 10;
-  lfoNode.start(0);
-
-  //Gain node from the LFO to filer
-  var lfoGain = audioContext.createGain();
-  lfoGain.gain.value = 10;
-  lfoNode.connect(lfoGain);
-  lfoGain.connect(filterNode.frequency);
-
-  var outputGainNode = audioContext.createGain();
-  outputGainNode.gain.value = 10;
+  var sampler = SimpleSampler(soundSource, audioContext);
   
-  var compressorNode = audioContext.createDynamicsCompressor();
-
-  //Attach filter to the Main Volume then output
-  soundSource.connect(filterNode);
-  filterNode.connect(outputGainNode);
-  outputGainNode.connect(compressorNode);
-  compressorNode.connect(audioContext.destination);
-
 /* View Param Init, View GUI. Init */
 
   //dat.gui.js provides sliders for parameters
@@ -149,6 +120,7 @@ $(document).ready(function(){
       + leapControlledFrequency 
       + " " 
       + leapControlledLFORate);
+    console.log("testing!");
   });  
 
 });
