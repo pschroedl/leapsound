@@ -23,12 +23,11 @@ $(document).ready(function(){
   addGui(sampler,soundSource);
 
 /* Default var setting, control assignments */
-
-  //deal defaults
-  var leapControlledFrequency = 200;
-  var leapControlledLFORate = 10;
-  var leapControlledLFOGain = 100;
-  var leapControlledResonance = 0;
+  var leapControlled = {};
+  leapControlled.Frequency = 200;
+  leapControlled.LFORate = 10;
+  leapControlled.LFOGain = 100;
+  leapControlled.Resonance = 0;
 
 /* Main program loop */
 
@@ -47,34 +46,19 @@ $(document).ready(function(){
     if (frame.hands.length >= 1){
       if (frame.hands[0].fingers.length >= 2){
         //outputGain.gain.value = 10;
-        leapControlledFrequency = frame.data.hands[0].palmPosition[1];
-        leapControlledLFORate = frame.data.hands[0].palmPosition[2];
-        leapControlledResonance = frame.data.hands[0].palmPosition[0];
+        leapControlled.Frequency = frame.data.hands[0].palmPosition[1];
+        leapControlled.LFORate = frame.data.hands[0].palmPosition[2];
+        leapControlled.Resonance = frame.data.hands[0].palmPosition[0];
       }
     }
 
     //Assign changed gui.param and leap values to synth properties
 
-    sampler.filterNode.frequency.value = leapControlledFrequency*10;
-    sampler.lfoNode.frequency.value = Math.abs(leapControlledLFORate/10);
-    sampler.filterNode.Q.value = leapControlledResonance/10;
-    
-    //Debugging
-    console.clear();
-    console.log("Filter Frequency : " 
-      + sampler.filterNode.frequency.value);
-    console.log("Filter Resonance : " 
-      + sampler.filterNode.Q.value);
-    console.log("LFO Rate : " 
-      + sampler.lfoNode.frequency.value);
+    sampler.filterNode.frequency.value = leapControlled.Frequency*10;
+    sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
+    sampler.filterNode.Q.value = leapControlled.Resonance/10;
 
-    console.log("(x,y,z) : "
-      + leapControlledResonance 
-      + " " 
-      + leapControlledFrequency 
-      + " " 
-      + leapControlledLFORate);
-    console.log("testing!2");
+    leapConsole(leapControlled);
   });  
 
 });
