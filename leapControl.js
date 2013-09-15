@@ -6,13 +6,7 @@ var leapControl = function(sampler){
   leapControlled.LFOGain = 100;
   leapControlled.Resonance = 0;
 
-/* Main program loop */
-
-  //polls (60xsecond)
-  //the Leap.loop frame for
-  //xyz of hand position ( only open - 1 or more fingers )
-  //and controls 3 params from synth
-  //LPF Freq, Q, and LFO Rate
+/* Main leap control loop */
 
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
