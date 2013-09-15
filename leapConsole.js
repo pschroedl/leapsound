@@ -1,5 +1,4 @@
 var leapConsole = function(leapControlled){
-
     console.clear();
     console.log("Filter Frequency : " 
       + leapControlled.Frequency);
