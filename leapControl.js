@@ -21,16 +21,18 @@ var leapControl = function(sampler){
    
   cube = new THREE.Mesh( geometry, material );
 
+
+  cube.position.y = 50;
+  cube.position.z = 50; 
+  cube.position.x = 50;
+
+  // cube.position.y = this.window.innerHeight/2;
+  // cube.position.z = 50; 
+  // cube.position.x = this.window.innerWidth/2;
+  scene.add(cube);
+
   debugger;
 
-  // cube.position.y = 50;
-  // cube.position.z = 50; 
-  // cube.position.x = 50;
-
-  cube.position.y = this.outerHeight/2;
-  cube.position.z = 50; 
-  cube.position.x = this.outerWidth/2;
-  scene.add(cube);
 
   var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
   camera.position.x = 0;
@@ -44,7 +46,13 @@ var leapControl = function(sampler){
 
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
-      //outputGain.gain.value = 0;
+      //outputGain.gain.value = 0;  
+        sampler.filterNode.frequency.value = 30000;
+        sampler.lfoNode.frequency.value = 0;
+        sampler.filterNode.Q.value = 0;
+        cube.position.x = 50;
+        cube.position.y = 50;
+        cube.position.z = 50; 
       return;
     }
 
