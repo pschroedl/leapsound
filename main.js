@@ -9,7 +9,7 @@ $(document).ready(function(){
 /* Load sample file over http to our buffer */
   
   var getSample = new XMLHttpRequest(); 
-  getSample.open("GET","synthstabbing.wav",true);
+  getSample.open("GET","zyfoDrez.wav",true);
   getSample.responseType = "arraybuffer";
   getSample.onload = function(){
     var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
