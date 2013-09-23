@@ -6,7 +6,7 @@ var Gui = function (sampler, sample){
   this.loopEnd = sample.loopEnd;
   this.LFORate = sampler.lfoNode.frequency.value;
   this.LFOGain = sampler.lfoGain.gain.value;
-debugger;
+
   gui.add(this, 'freq').min(0).max(20000)
   .onChange(function(newVal){
     sampler.filterNode.frequency.value = newVal;
@@ -36,6 +36,30 @@ debugger;
     .knob({
       'min':100,
       'max':20000,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filterNode.frequency.value = newVal; 
+      console.log(newVal);},
+    });
+
+  $(".resonance")
+    .knob({
+      'min':0,
+      'max':30,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filterNode.frequency.value = newVal; 
+      console.log(newVal);},
+    });
+
+    $(".lforate")
+    .knob({
+      'min':0,
+      'max':20,
       'angleOffset':-125,
       'angleArc':250,
       'fgcolor':"#66EE66",
