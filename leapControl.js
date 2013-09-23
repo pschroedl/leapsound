@@ -9,7 +9,7 @@ var leapControl = function(sampler, soundSource, sliders){
   var scene = new THREE.Scene();
   var container = $(".webGLContainer");
   var renderer = new THREE.WebGLRenderer( { canvas : container.get(0) } );
-  renderer.setSize( 500, 500 );
+  renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild(renderer.domElement);
 
   var geometry = new THREE.CubeGeometry( 200, 200, 200 );
@@ -72,9 +72,9 @@ var leapControl = function(sampler, soundSource, sliders){
     cube.position.z = leapControlled.LFORate; 
     cube.rotation.x = leapControlled.LFOGain;
 
-    $(".frequency").val(leapControlled.Frequency).trigger('change');
-    $(".resonance").val(leapControlled.Resonance).trigger('change');
-    $(".lforate").val(leapControlled.LFORate).trigger('change');
+    $("#frequency").val(leapControlled.Frequency).trigger('change');
+    $("#resonance").val(leapControlled.Resonance).trigger('change');
+    $("#lforate").val(leapControlled.LFORate).trigger('change');
 
     leapConsole(leapControlled);
     renderer.render(scene, camera);
