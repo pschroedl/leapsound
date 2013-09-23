@@ -6,7 +6,7 @@ var Gui = function (sampler, sample){
   this.loopEnd = sample.loopEnd;
   this.LFORate = sampler.lfoNode.frequency.value;
   this.LFOGain = sampler.lfoGain.gain.value;
-
+debugger;
   gui.add(this, 'freq').min(0).max(20000)
   .onChange(function(newVal){
     sampler.filterNode.frequency.value = newVal;
@@ -31,4 +31,19 @@ var Gui = function (sampler, sample){
   .onChange(function(newVal){
     sampler.lfoGain.gain.value = newVal;
   });
+
+  $(".frequency")
+    .knob({
+      'change' : function (newVal) { 
+      sampler.filterNode.frequency.value = newVal; 
+      console.log(newVal);}})
+    .trigger(
+      'configure',
+        {
+        "min":100,
+        "max":20000,
+        }
+    );
+
+
 };
