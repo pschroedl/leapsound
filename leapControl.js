@@ -1,4 +1,4 @@
-var leapControl = function(sampler){
+var leapControl = function(sampler, soundSource, sliders){
 /* Default var setting, control assignments */
   var leapControlled = {};
   leapControlled.Frequency = 200;
@@ -26,13 +26,7 @@ var leapControl = function(sampler){
   cube.position.z = 50; 
   cube.position.x = 50;
 
-  // cube.position.y = this.window.innerHeight/2;
-  // cube.position.z = 50; 
-  // cube.position.x = this.window.innerWidth/2;
   scene.add(cube);
-
-  debugger;
-
 
   var camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
   camera.position.x = 0;
@@ -42,8 +36,7 @@ var leapControl = function(sampler){
   renderer.render(scene, camera);
 /* Main leap control loop */
 
-
-
+debugger;
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
       //outputGain.gain.value = 0;  
@@ -74,6 +67,10 @@ var leapControl = function(sampler){
     cube.position.x = leapControlled.Resonance;
     cube.position.y = leapControlled.Frequency;
     cube.position.z = leapControlled.LFORate; 
+
+    sliders.freq = leapControlled.Frequency;
+    sliders.Q = leapControlled.Resonance;
+    sliders.LFORate = leapControlled.LFORate;
 
     leapConsole(leapControlled);
     renderer.render(scene, camera);
