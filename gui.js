@@ -1,4 +1,4 @@
-var addGui = function (sampler, sample){
+var Gui = function (sampler, sample){
   var gui = new dat.GUI();
   this.freq = sampler.filterNode.frequency.value;
   this.Q = sampler.filterNode.Q.value;
@@ -30,5 +30,5 @@ var addGui = function (sampler, sample){
   gui.add(this, 'LFOGain').min(0).max(5000)
   .onChange(function(newVal){
     sampler.lfoGain.gain.value = newVal;
-  });  
+  });
 };
