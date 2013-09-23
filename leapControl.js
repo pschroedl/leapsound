@@ -36,11 +36,11 @@ var leapControl = function(sampler, soundSource, sliders){
   renderer.render(scene, camera);
 /* Main leap control loop */
 
-debugger;
+
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
       //outputGain.gain.value = 0;  
-        sampler.filterNode.frequency.value = 30000;
+        //sampler.filterNode.frequency.value = 30000;
         sampler.lfoNode.frequency.value = 0;
         sampler.filterNode.Q.value = 0;
         cube.position.x = 50;
@@ -60,7 +60,7 @@ debugger;
 
     //Assign changed gui.param and leap values to synth properties
 
-    sampler.filterNode.frequency.value = leapControlled.Frequency*10;
+    //sampler.filterNode.frequency.value = leapControlled.Frequency*10;
     sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
     sampler.filterNode.Q.value = leapControlled.Resonance/10;
 
@@ -68,11 +68,11 @@ debugger;
     cube.position.y = leapControlled.Frequency;
     cube.position.z = leapControlled.LFORate; 
 
-    sliders.freq = leapControlled.Frequency;
-    sliders.Q = leapControlled.Resonance;
-    sliders.LFORate = leapControlled.LFORate;
+    $(".frequency").val(leapControlled.Frequency).trigger('change');
+    $(".resonance").val(leapControlled.Resonance).trigger('change');
+    $(".lforate").val(leapControlled.LFORate).trigger('change');
 
-    leapConsole(leapControlled);
+    //leapConsole(leapControlled);
     renderer.render(scene, camera);
   });
 };
