@@ -1,5 +1,9 @@
 <html>
   <head>   
+
+    <link rel="stylesheet" type="text/css" href="reset.css" />
+    <link rel="stylesheet" type="text/css" href="styles.css" />
+
     <script type="text/javascript" src="lib/jquery.min.js"></script>
     <script type="text/javascript"src="http://js.leapmotion.com/0.2.0/leap.js"></script>
     <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
@@ -18,6 +22,26 @@
     <div>
       <h1 id="welcome">Welcome to LeapSound - Wave your hands!</h1>
     </div>
-    <input class="frequency">
+
+    <div class="controlbar">
+      <span>
+        <div>
+          Low Pass Filter Frequency Cutoff
+        </div>
+        <input class="frequency">
+      </span>
+      <span>
+        <div>
+          Filter Resonance
+        </div>
+        <input class="resonance">
+      </span>
+      <span>
+        <div>
+          Filter LFO Rate
+        </div>
+        <input class="lforate">
+      </span>
+    </div>
   </body>
 </html>
