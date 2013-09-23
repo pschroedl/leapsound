@@ -8,7 +8,6 @@ var leapControl = function(sampler, soundSource, sliders){
 
   var scene = new THREE.Scene();
   var container = $(".webGLContainer");
-  debugger;
   var renderer = new THREE.WebGLRenderer( { canvas : container.get(0) } );
   renderer.setSize( 500, 500 );
   document.body.appendChild(renderer.domElement);
@@ -22,8 +21,6 @@ var leapControl = function(sampler, soundSource, sliders){
   var material = new THREE.MeshBasicMaterial( { vertexColors: THREE.FaceColors } );
    
   cube = new THREE.Mesh( geometry, material );
-
-
   cube.position.y = 50;
   cube.position.z = 50; 
   cube.position.x = 50;
@@ -57,6 +54,10 @@ var leapControl = function(sampler, soundSource, sliders){
         leapControlled.Frequency = frame.data.hands[0].palmPosition[1];
         leapControlled.LFORate = frame.data.hands[0].palmPosition[2];
         leapControlled.Resonance = frame.data.hands[0].palmPosition[0];
+
+        leapControlled.palmNormalX = frame.data.hands[0].palmNormal[0];
+        leapControlled.palmNormalY = frame.data.hands[0].palmNormal[1];
+        leapControlled.palmNormalZ = frame.data.hands[0].palmNormal[2];
       }
     }
 
@@ -69,12 +70,13 @@ var leapControl = function(sampler, soundSource, sliders){
     cube.position.x = leapControlled.Resonance;
     cube.position.y = leapControlled.Frequency;
     cube.position.z = leapControlled.LFORate; 
+    cube.rotation.x = leapControlled.LFOGain;
 
     $(".frequency").val(leapControlled.Frequency).trigger('change');
     $(".resonance").val(leapControlled.Resonance).trigger('change');
     $(".lforate").val(leapControlled.LFORate).trigger('change');
 
-    //leapConsole(leapControlled);
+    leapConsole(leapControlled);
     renderer.render(scene, camera);
   });
 };
