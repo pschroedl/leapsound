@@ -32,7 +32,7 @@ var Gui = function (sampler, sample){
     sampler.lfoGain.gain.value = newVal;
   });
 
-  $(".frequency")
+  $("#frequency")
     .knob({
       'min':100,
       'max':20000,
@@ -44,7 +44,7 @@ var Gui = function (sampler, sample){
       console.log(newVal);},
     });
 
-  $(".resonance")
+  $("#resonance")
     .knob({
       'min':0,
       'max':30,
@@ -56,7 +56,7 @@ var Gui = function (sampler, sample){
       console.log(newVal);},
     });
 
-    $(".lforate")
+    $("#lforate")
     .knob({
       'min':0,
       'max':20,
