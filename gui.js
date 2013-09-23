@@ -34,16 +34,14 @@ debugger;
 
   $(".frequency")
     .knob({
+      'min':100,
+      'max':20000,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
       'change' : function (newVal) { 
       sampler.filterNode.frequency.value = newVal; 
-      console.log(newVal);}})
-    .trigger(
-      'configure',
-        {
-        "min":100,
-        "max":20000,
-        }
-    );
-
+      console.log(newVal);},
+    });
 
 };
