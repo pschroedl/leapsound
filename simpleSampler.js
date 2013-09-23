@@ -17,7 +17,7 @@ var SimpleSampler = function(source, context){
 
   //Gain node from the LFO to filer
   this.lfoGain = context.createGain();
-  this.lfoGain.gain.value = 10;
+  this.lfoGain.gain.value = 100;
   this.lfoNode.connect(this.lfoGain);
   this.lfoGain.connect(this.filterNode.frequency);
 
