@@ -7,8 +7,10 @@ var leapControl = function(sampler, soundSource, sliders){
   leapControlled.Resonance = 0;
 
   var scene = new THREE.Scene();
-  var renderer = new THREE.WebGLRenderer();
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  var container = $(".webGLContainer");
+  debugger;
+  var renderer = new THREE.WebGLRenderer( { canvas : container.get(0) } );
+  renderer.setSize( 500, 500 );
   document.body.appendChild(renderer.domElement);
 
   var geometry = new THREE.CubeGeometry( 200, 200, 200 );
