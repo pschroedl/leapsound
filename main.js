@@ -20,9 +20,9 @@ $(document).ready(function(){
   getSample.send();
 
 /* View Param Init, View GUI. Init */
-  addGui(sampler,soundSource);
 
-  leapControl(sampler);
+  var sliders =  new Gui(sampler,soundSource);
+  leapControl(sampler, soundSource, sliders);
   
 });
 
