@@ -6,6 +6,8 @@ var leapConsole = function(leapControlled){
       + leapControlled.Resonance);
     console.log("LFO Rate : " 
       + leapControlled.LFORate);
+    console.log("LFO Rate : " 
+      + leapControlled.HighPassFreq);
 
     console.log("(x,y,z) : "
       + leapControlled.Resonance 

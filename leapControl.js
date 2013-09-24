@@ -5,6 +5,7 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
   leapControlled.LFORate = 10;
   leapControlled.LFOGain = 80;
   leapControlled.Resonance = 0;
+  leapControlled.HighPassFreq = 100;
 
 /* Main leap control loop */
 
@@ -28,15 +29,22 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
       }
     }
 
+    if (frame.hands.length === 2){
+        leapControlled.HighPassFreq = frame.data.hands[1].palmPosition[1];
+    }
+
     //Assign changed gui.param and leap values to synth properties
 
     sampler.filterNode.frequency.value = leapControlled.Frequency*10;
     sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
     sampler.filterNode.Q.value = leapControlled.Resonance/10;
 
-    $("#frequency").val(leapControlled.Frequency).trigger('change');
+    sampler.highPassFilterNode = leapControlled.HighPassFreq*10;
+
+    $("#frequency").val(leapControlled.Frequency*10).trigger('change');
     $("#resonance").val(leapControlled.Resonance).trigger('change');
     $("#lforate").val(leapControlled.LFORate).trigger('change');
+    $("#hpfreq").val(leapControlled.HighPassFreq*10).trigger('change');
 
     leapConsole(leapControlled);
   });

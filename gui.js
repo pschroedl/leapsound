@@ -105,4 +105,17 @@ var Gui = function (sampler, sample){
       console.log(newVal);},
     });
 
+
+    $("#hpcutoff")
+    .knob({
+      'min':0,
+      'max':20,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filterNode.frequency.value = newVal; 
+      console.log(newVal);},
+    });
+
 };
