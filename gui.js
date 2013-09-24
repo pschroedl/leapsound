@@ -1,7 +1,10 @@
 var Gui = function (sampler, sample){
   var gui = new dat.GUI();
-  this.freq = sampler.filters[0].frequency.value;
-  this.Q = sampler.filters[0].Q.value;
+  this.freq = [];
+  this.Q = [];
+  this.filterGain = [];
+  this.freq[0] = sampler.filters[0].frequency.value;
+  this.Q[0] = sampler.filters[0].Q.value;
   this.loopStart = sample.loopStart;
   this.loopEnd = sample.loopEnd;
   //this.LFORate = sampler.lfoNode.frequency.value;
@@ -93,7 +96,7 @@ var Gui = function (sampler, sample){
       console.log(newVal);},
     });
 
-    $("#filter1lforate")
+  $("#filter1gain")
     .knob({
       'min':0,
       'max':20,
@@ -101,12 +104,35 @@ var Gui = function (sampler, sample){
       'angleArc':250,
       'fgcolor':"#66EE66",
       'change' : function (newVal) { 
-      sampler.filterNode.frequency.value = newVal; 
+      sampler.filters[0].gain.value = newVal; 
       console.log(newVal);},
     });
 
+  $("#filter1lforate")
+    .knob({
+      'min':0,
+      'max':20,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filterLFOs[0].frequency.value = newVal; 
+      console.log(newVal);},
+    });
 
-    $("#filter2cutoff")
+  $("#filter1lfogain")
+    .knob({
+      'min':0,
+      'max':10,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filterLFOs[0].gain.value = newVal; 
+      console.log(newVal);},
+    });
+
+  $("#filter2cutoff")
     .knob({
       'min':0,
       'max':20000,
@@ -114,7 +140,55 @@ var Gui = function (sampler, sample){
       'angleArc':250,
       'fgcolor':"#66EE66",
       'change' : function (newVal) { 
-      sampler.filterNode.frequency.value = newVal; 
+      sampler.filters[1].frequency.value = newVal; 
+      console.log(newVal);},
+    });
+
+  $("#filter2gain")
+    .knob({
+      'min':0,
+      'max':20,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filters[1].gain.value = newVal; 
+      console.log(newVal);},
+    });
+
+  $("#filter2q")
+    .knob({
+      'min':0,
+      'max':30,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filters[1].Q.value = newVal; 
+      console.log(newVal);},
+    });
+
+  $("#filter2lforate")
+    .knob({
+      'min':0,
+      'max':20,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filterLFOs[1].frequency.value = newVal; 
+      console.log(newVal);},
+    });
+
+  $("#filter2lfogain")
+    .knob({
+      'min':0,
+      'max':10,
+      'angleOffset':-125,
+      'angleArc':250,
+      'fgcolor':"#66EE66",
+      'change' : function (newVal) { 
+      sampler.filterLFOs[1].gain.value = newVal; 
       console.log(newVal);},
     });
 
