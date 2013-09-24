@@ -2,20 +2,20 @@ var ZPlaneSampler = function(source, context){
 /* An attempt to emulate z-plane filters */
 
   var createNode = function(context, soundContext, attributes){
-    for attribute in attributes {
-       //context[attribute.key] = attribute.value;
-       //case of attribute.key being lopass, context.createbiquad + type = lopass
-       //Use Delegation table!!
+    // for attribute in attributes {
+    //    //context[attribute.key] = attribute.value;
+    //    //case of attribute.key being lopass, context.createbiquad + type = lopass
+    //    //Use Delegation table!!
 
-       //types to handle - Oscillator, Filter, LFO
+    //    //types to handle - Oscillator, Filter, LFO
 
-       //pass in context, soundContext,
-       //and list of attributes
-       //that reflect the webAPI specs
+    //    //pass in context, soundContext,
+    //    //and list of attributes
+    //    //that reflect the webAPI specs
 
-       //return node - implicit in prototypal
-    }
-  }
+    //    //return node - implicit in prototypal
+    // }
+  };
 
   //Create filters, splitter/merger, gain and compressor
   this.filterNode = context.createBiquadFilter();
