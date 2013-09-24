@@ -23,8 +23,8 @@ var Visualizer = function(container){
 
   this.camera = new THREE.PerspectiveCamera( 70, window.innerWidth / window.innerHeight, 1, 1000 );
   this.camera.position.x = 0;
-  this.camera.position.y = 150;
-  this.camera.position.z = 500;
+  this.camera.position.y = 0;
+  this.camera.position.z = 1000;
 
   this.renderer.render(this.scene, this.camera);
 
