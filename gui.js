@@ -14,7 +14,7 @@ var Gui = function (sampler, sample){
       .onChange(function(newVal) {
         parameter = newVal
       })
-  });
+  };
 
   var Knob = function(attributeValues){
     //attributeValues is an array object containing min, 
