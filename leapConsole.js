@@ -15,11 +15,4 @@ var leapConsole = function(leapControlled){
       + leapControlled.Frequency 
       + " " 
       + leapControlled.LFORate);
-    
-    console.log("PalmNormal (x,y,z) : "
-      + leapControlled.palmNormalX
-      + " " 
-      + leapControlled.palmNormalY
-      + " " 
-      + leapControlled.palmNormalZ);
 }
