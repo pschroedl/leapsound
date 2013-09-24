@@ -1,6 +1,7 @@
 var ZPlaneSampler = function(source, context){
 /* An attempt to emulate z-plane filters */
   this.filters = [];
+  this.filterLFOs = [];
 
   var createNode = function(context, soundContext, attributes){
     // for attribute in attributes {
