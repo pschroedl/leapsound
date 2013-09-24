@@ -6,6 +6,8 @@ var Gui = function (sampler, sample){
   this.loopEnd = sample.loopEnd;
   this.LFORate = sampler.lfoNode.frequency.value;
   this.LFOGain = sampler.lfoGain.gain.value;
+  this.hiPassCutoff = sampler.highPassFilterNode.frequency.value;
+  this.bandPassCutoff = sampler.bandPassFilterNode.frequency.value;
 
   gui.add(this, 'freq').min(0).max(20000)
   .onChange(function(newVal){
@@ -31,6 +33,15 @@ var Gui = function (sampler, sample){
   .onChange(function(newVal){
     sampler.lfoGain.gain.value = newVal;
   });
+  gui.add(this, 'hiPassCutoff').min(0).max(20000)
+  .onChange(function(newVal){
+    sampler.highPassFilterNode.frequency.value = newVal;
+  });
+  gui.add(this, 'bandPassCutoff').min(0).max(20000)
+  .onChange(function(newVal){
+    sampler.bandPassFilterNode.frequency.value = newVal;
+  });
+
 
   $("#frequency")
     .knob({
