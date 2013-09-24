@@ -1,8 +1,9 @@
 var Visualizer = function(container){
 
   this.scene = new THREE.Scene();
-  this.container = container;
-  this.renderer = new THREE.WebGLRenderer( { canvas : this.container.get(0) } );
+  //this.container = container;
+  this.renderer = new THREE.WebGLRenderer();
+  // { canvas : this.container.get(0) } 
   this.renderer.setSize( window.innerWidth, window.innerHeight );
   document.body.appendChild(this.renderer.domElement);
 
