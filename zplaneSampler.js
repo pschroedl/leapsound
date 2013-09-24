@@ -1,5 +1,6 @@
 var ZPlaneSampler = function(source, context){
 /* An attempt to emulate z-plane filters */
+  this.filters = [];
 
   var createNode = function(context, soundContext, attributes){
     // for attribute in attributes {
@@ -18,9 +19,9 @@ var ZPlaneSampler = function(source, context){
   };
 
   //Create filters, splitter/merger, gain and compressor
-  this.filterNode = context.createBiquadFilter();
-  this.filterNode.type = "bandpass";
-  this.filterNode.frequency.value = 1000;
+  this.filters[0] = context.createBiquadFilter();
+  this.filters[0].type = "bandpass";
+  this.filters[0].frequency.value = 1000;
 
   // this.highPassFilterNode = context.createBiquadFilter();
   // this.highPassFilterNode.type = "highpass";
@@ -55,10 +56,10 @@ var ZPlaneSampler = function(source, context){
 
   //Attach filter to the splitter then back to merger
   source.connect(this.splitterNode);
-  this.splitterNode.connect(this.filterNode, 0);
+  this.splitterNode.connect(this.filters[0], 0);
 //  this.splitterNode.connect(this.highPassFilterNode, 1);
 //  this.splitterNode.connect(this.bandPassFilterNode, 2);
-  this.filterNode.connect(this.mergerNode);
+  this.filters[0].connect(this.mergerNode);
 //  this.highPassFilterNode.connect(this.mergerNode);
 // this.bandPassFilterNode.connect(this.mergerNode);
 

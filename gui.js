@@ -1,7 +1,7 @@
 var Gui = function (sampler, sample){
   var gui = new dat.GUI();
-  this.freq = sampler.filterNode.frequency.value;
-  this.Q = sampler.filterNode.Q.value;
+  this.freq = sampler.filters[0].frequency.value;
+  this.Q = sampler.filters[0].Q.value;
   this.loopStart = sample.loopStart;
   this.loopEnd = sample.loopEnd;
   //this.LFORate = sampler.lfoNode.frequency.value;
@@ -69,7 +69,7 @@ var Gui = function (sampler, sample){
   //     sampler.bandPassFilterNode.frequency.value = newVal;
   // });
 
-  $("#frequency")
+  $("#filter1cutoff")
     .knob({
       'min':0,
       'max':20000,
@@ -77,11 +77,11 @@ var Gui = function (sampler, sample){
       'angleArc':250,
       'fgcolor':"#66EE66",
       'change' : function (newVal) { 
-      sampler.filterNode.frequency.value = newVal; 
+      sampler.filters[0].frequency.value = newVal; 
       console.log(newVal);},
     });
 
-  $("#resonance")
+  $("#filter1q")
     .knob({
       'min':0,
       'max':30,
@@ -89,11 +89,11 @@ var Gui = function (sampler, sample){
       'angleArc':250,
       'fgcolor':"#66EE66",
       'change' : function (newVal) { 
-      sampler.filterNode.Q.value = newVal; 
+      sampler.filters[0].Q.value = newVal; 
       console.log(newVal);},
     });
 
-    $("#lforate")
+    $("#filter1lforate")
     .knob({
       'min':0,
       'max':20,
@@ -106,7 +106,7 @@ var Gui = function (sampler, sample){
     });
 
 
-    $("#hpcutoff")
+    $("#filter2cutoff")
     .knob({
       'min':0,
       'max':20000,
