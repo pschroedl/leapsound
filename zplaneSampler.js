@@ -21,20 +21,21 @@ var ZPlaneSampler = function(source, context){
 
   //Create filters, splitter/merger, gain and compressor
   this.filters[0] = context.createBiquadFilter();
-  this.filters[0].type = "bandpass";
+  this.filters[0].type = "lowpass";
   this.filters[0].frequency.value = 1000;
+  this.filters[0].gain.value = 1;
 
-  // this.highPassFilterNode = context.createBiquadFilter();
-  // this.highPassFilterNode.type = "highpass";
-  // this.highPassFilterNode.frequency.value = 1000;
-  // this.highPassFilterNode.gain.value = 0;
+  this.filters[1] = context.createBiquadFilter();
+  this.filters[1].type = "bandpass";
+  this.filters[1].frequency.value = 1000;
+  this.filters[1].gain.value = 1;
 
   // this.bandPassFilterNode = context.createBiquadFilter();
   // this.bandPassFilterNode.type = "lowpass";
   // this.bandPassFilterNode.frequency.value = 1000;
 
-  this.splitterNode = context.createChannelSplitter(1);
-  this.mergerNode = context.createChannelMerger(1);
+  this.splitterNode = context.createChannelSplitter(2);
+  this.mergerNode = context.createChannelMerger(2);
 
   this.outputGainNode = context.createGain();
   this.outputGainNode.gain.value = 10;
@@ -58,10 +59,10 @@ var ZPlaneSampler = function(source, context){
   //Attach filter to the splitter then back to merger
   source.connect(this.splitterNode);
   this.splitterNode.connect(this.filters[0], 0);
-//  this.splitterNode.connect(this.highPassFilterNode, 1);
+  this.splitterNode.connect(this.filters[1], 1);
 //  this.splitterNode.connect(this.bandPassFilterNode, 2);
   this.filters[0].connect(this.mergerNode);
-//  this.highPassFilterNode.connect(this.mergerNode);
+  this.filters[1].connect(this.mergerNode);
 // this.bandPassFilterNode.connect(this.mergerNode);
 
   this.mergerNode.connect(this.outputGainNode);
