@@ -43,10 +43,9 @@ var Gui = function (sampler, sample){
   });
 
   var Knob = function(attributeValues){
-    //attributeValues is an array object containing min, max,angleOffset,AngleArc,fgcolor, and target object
+    //attributeValues is an array object containing min, 
+    //max,angleOffset,angleArc,fgcolor, and target object
     //in that order.
-
-    this.properties = {}
 
     //params object and defaults
     var parameters = [
@@ -58,7 +57,7 @@ var Gui = function (sampler, sample){
       'target' ];
 
     for(var i = 0; i < attributeValues.length; i++ ){
-      this[parameters[i]] = attributeValues[i];
+      this[parameters[i]] = attributeValues[i];  //is this legal? seems too easy
     }
 
   }
