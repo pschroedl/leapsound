@@ -22,14 +22,15 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
 
     if (frame.hands.length >= 1){
       if (frame.hands[0].fingers.length >= 2){
+        var leapHand = frame.data.hands[0];
         //outputGain.gain.value = 10;
-        leapControlled.Frequency = frame.data.hands[0].palmPosition[1];
-        leapControlled.LFORate = frame.data.hands[0].palmPosition[2];
-        leapControlled.Resonance = frame.data.hands[0].palmPosition[0];
+        leapControlled.Frequency = leapHand.palmPosition[1];
+        leapControlled.LFORate = leapHand.palmPosition[2];
+        leapControlled.Resonance = leapHand.palmPosition[0];
 
-        leapControlled.palmNormalX = frame.data.hands[0].palmNormal[0];
-        leapControlled.palmNormalY = frame.data.hands[0].palmNormal[1];
-        leapControlled.palmNormalZ = frame.data.hands[0].palmNormal[2];
+        leapControlled.palmNormalX = leapHand.palmNormal[0];
+        leapControlled.palmNormalY = leapHand.palmNormal[1];
+        leapControlled.palmNormalZ = leapHand.palmNormal[2];
       }
     }
 
