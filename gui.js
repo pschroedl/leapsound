@@ -10,7 +10,7 @@ var Gui = function (sampler, sample){
   this.bandPassCutoff = sampler.bandPassFilterNode.frequency.value;
 
   var DatGui = function(context, gui, name, parameter, min, max){
-    gui.add(context, name ).min(min).max(max)
+    gui.add(context, name).min(min).max(max)
       .onChange(function(newVal) {
         parameter = newVal
       })
