@@ -4,17 +4,17 @@ var Gui = function (sampler, sample){
   this.Q = sampler.filterNode.Q.value;
   this.loopStart = sample.loopStart;
   this.loopEnd = sample.loopEnd;
-  this.LFORate = sampler.lfoNode.frequency.value;
-  this.LFOGain = sampler.lfoGain.gain.value;
-  this.hiPassCutoff = sampler.highPassFilterNode.frequency.value;
-  this.bandPassCutoff = sampler.bandPassFilterNode.frequency.value;
+  //this.LFORate = sampler.lfoNode.frequency.value;
+  //this.LFOGain = sampler.lfoGain.gain.value;
+//  this.hiPassCutoff = sampler.highPassFilterNode.frequency.value;
+  //this.bandPassCutoff = sampler.bandPassFilterNode.frequency.value;
 
-  var DatGui = function(context, gui, name, parameter, min, max){
-    gui.add(context, name).min(min).max(max)
-      .onChange(function(newVal) {
-        parameter = newVal
-      })
-  };
+  // var DatGui = function(context, gui, name, parameter, min, max){
+  //   gui.add(context, name).min(min).max(max)
+  //     .onChange(function(newVal) {
+  //       parameter = newVal
+  //     })
+  // };
 
   var Knob = function(attributeValues){
     //attributeValues is an array object containing min, 
@@ -36,42 +36,42 @@ var Gui = function (sampler, sample){
 
   };
 
-  gui.add(this, 'freq').min(0).max(20000)
-    .onChange(function(newVal){
-      sampler.filterNode.frequency.value = newVal;
-  });
-  gui.add(this, 'Q').min(0).max(30)
-    .onChange(function(newVal){
-      sampler.filterNode.Q.value = newVal;
-  });
-  gui.add(this, 'loopStart').min(0).max(1)
-    .onChange(function(newVal){
-      sample.loopStart = newVal;
-  });
-  gui.add(this, 'loopEnd').min(0).max(1)
-    .onChange(function(newVal){
-      sample.loopEnd = newVal;
-  });
-  gui.add(this, 'LFORate').min(0).max(20)
-    .onChange(function(newVal){
-      sampler.lfoNode.frequency.value = newVal;
-  });
-  gui.add(this, 'LFOGain').min(0).max(5000)
-  .onChange(function(newVal){
-    sampler.lfoGain.gain.value = newVal;
-  });
-  gui.add(this, 'hiPassCutoff').min(0).max(20000)
-    .onChange(function(newVal){
-      sampler.highPassFilterNode.frequency.value = newVal;
-  });
-  gui.add(this, 'bandPassCutoff').min(0).max(20000)
-    .onChange(function(newVal){
-      sampler.bandPassFilterNode.frequency.value = newVal;
-  });
+  // gui.add(this, 'freq').min(0).max(20000)
+  //   .onChange(function(newVal){
+  //     sampler.filterNode.frequency.value = newVal;
+  // });
+  // gui.add(this, 'Q').min(0).max(30)
+  //   .onChange(function(newVal){
+  //     sampler.filterNode.Q.value = newVal;
+  // });
+  // gui.add(this, 'loopStart').min(0).max(1)
+  //   .onChange(function(newVal){
+  //     sample.loopStart = newVal;
+  // });
+  // gui.add(this, 'loopEnd').min(0).max(1)
+  //   .onChange(function(newVal){
+  //     sample.loopEnd = newVal;
+  // });
+  // gui.add(this, 'LFORate').min(0).max(20)
+  //   .onChange(function(newVal){
+  //     sampler.lfoNode.frequency.value = newVal;
+  // });
+  // gui.add(this, 'LFOGain').min(0).max(5000)
+  // .onChange(function(newVal){
+  //   sampler.lfoGain.gain.value = newVal;
+  // });
+  // gui.add(this, 'hiPassCutoff').min(0).max(20000)
+  //   .onChange(function(newVal){
+  //     sampler.highPassFilterNode.frequency.value = newVal;
+  // });
+  // gui.add(this, 'bandPassCutoff').min(0).max(20000)
+  //   .onChange(function(newVal){
+  //     sampler.bandPassFilterNode.frequency.value = newVal;
+  // });
 
   $("#frequency")
     .knob({
-      'min':100,
+      'min':0,
       'max':20000,
       'angleOffset':-125,
       'angleArc':250,
@@ -89,7 +89,7 @@ var Gui = function (sampler, sample){
       'angleArc':250,
       'fgcolor':"#66EE66",
       'change' : function (newVal) { 
-      sampler.filterNode.frequency.value = newVal; 
+      sampler.filterNode.Q.value = newVal; 
       console.log(newVal);},
     });
 
@@ -109,7 +109,7 @@ var Gui = function (sampler, sample){
     $("#hpcutoff")
     .knob({
       'min':0,
-      'max':20,
+      'max':20000,
       'angleOffset':-125,
       'angleArc':250,
       'fgcolor':"#66EE66",
