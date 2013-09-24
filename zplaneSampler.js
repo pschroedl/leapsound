@@ -26,7 +26,7 @@ var ZPlaneSampler = function(source, context){
   this.filters[0].gain.value = 1;
 
   this.filters[1] = context.createBiquadFilter();
-  this.filters[1].type = "bandpass";
+  this.filters[1].type = "highpass";
   this.filters[1].frequency.value = 1000;
   this.filters[1].gain.value = 1;
 

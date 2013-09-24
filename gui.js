@@ -75,7 +75,7 @@ var Gui = function (sampler, sample){
   $("#filter1cutoff")
     .knob({
       'min':0,
-      'max':20000,
+      'max':22000,
       'angleOffset':-125,
       'angleArc':250,
       'fgcolor':"#66EE66",
@@ -135,7 +135,7 @@ var Gui = function (sampler, sample){
   $("#filter2cutoff")
     .knob({
       'min':0,
-      'max':20000,
+      'max':22000,
       'angleOffset':-125,
       'angleArc':250,
       'fgcolor':"#66EE66",
