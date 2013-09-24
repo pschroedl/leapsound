@@ -4,7 +4,9 @@ $(document).ready(function(){
   
   var soundSource = audioContext.createBufferSource();
 
-  var sampler =  new SimpleSampler(soundSource, audioContext);
+  var sampler =  new ZPlaneSampler(soundSource, audioContext);
+
+  //var visualizer = new Visualizer($(".webGLContainer"));
 
 /* Load sample file over http to our buffer */
   
