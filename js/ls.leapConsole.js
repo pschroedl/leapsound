@@ -1,4 +1,4 @@
-var leapConsole = function(leapControlled, leapHand1){
+var leapConsole = function(leapControlled, leapHand1, sampler){
     console.clear();
     console.log("Filter Frequency1 : " 
       + leapControlled.Frequency1);
@@ -21,5 +21,8 @@ var leapConsole = function(leapControlled, leapHand1){
       + leapHand1.palmPosition[2]);
     
     console.log("# of fingers :" + leapHand1.fingers.length);
+
+    console.log("Sampler Gain 1: " + sampler.filterGain[0].gain.value );
+    console.log("Sampler Gain 2: " + sampler.filterGain[1].gain.value );
 
 }
