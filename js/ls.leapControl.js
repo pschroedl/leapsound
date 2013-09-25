@@ -12,6 +12,15 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
   var y = 0;
   var z = 0;
 
+  var filterMin = [];
+  var filterMax = [];
+
+  filterMin[0] = 0;
+  filterMin[1] = 0;
+
+  filterMax[0] = 1000;
+  filterMax[1] = 1000;
+
 /* Main leap control loop */
 
   Leap.loop(function(frame) {
@@ -25,9 +34,10 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
         z = frame.hands[0].palmPosition[2];
 
        if (frame.hands[0].fingers.length === 1){
-        leapControlled.Frequency1 = (y*22000)/690;
+        //leapControlled.Frequency1 = (y*22000)/690;
+        leapControlled.Frequency1 = ((y*filterMax[0])/690) + filterMin[0]; 
         leapControlled.Resonance1 = (x*30)/300;
-        leapControlled.Gain1 = z/300;
+        leapControlled.Gain1 = -((z/300)-1.5)/2;
 
         sampler.filters[0].frequency.value = leapControlled.Frequency1;
         sampler.filters[0].Q.value = leapControlled.Resonance1;
@@ -39,9 +49,10 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
 
       } else
       {
-        leapControlled.Frequency2 = (y*22000)/690;
+        //leapControlled.Frequency2 = (y*22000)/690;
+        leapControlled.Frequency2 = ((y*filterMax[0])/690) + filterMin[0]; 
         leapControlled.Resonance2 = (x*30)/300;
-        leapControlled.Gain2 = z/300;
+        leapControlled.Gain2 = -((z/300)-1.5)/2;
 
         sampler.filters[1].frequency.value = leapControlled.Frequency2;
         sampler.filters[1].Q.value = leapControlled.Resonance2;
@@ -49,7 +60,7 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
 
         ls.gui.hpCutoff.value = leapControlled.Frequency2;
         ls.gui.hpResonance.value = leapControlled.Resonance2;
-        ls.gui.hpGain.value = leapControlled.Gain2 * 100;
+        ls.gui.hpGain.value = Math.abs(leapControlled.Gain2 * 100);
       }
     }
     

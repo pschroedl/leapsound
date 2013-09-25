@@ -8,7 +8,7 @@ var ZPlaneSampler = function(source, context){
     // for attribute in attributes {
     //    //context[attribute.key] = attribute.value;
     //    //case of attribute.key being lopass, context.createbiquad + type = lopass
-    //    //Use Delegation table!!
+    //    //Use Delegation table/router?
 
     //    //types to handle - Oscillator, Filter, LFO
 
