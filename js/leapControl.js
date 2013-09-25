@@ -16,7 +16,6 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
 
   Leap.loop(function(frame) {
     if (frame.hands.length < 1){
-      console.log("returning out of leap loop");
       return;
     }
 
@@ -34,9 +33,9 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
         sampler.filters[0].Q.value = leapControlled.Resonance1;
         sampler.filterGain[0].value = leapControlled.Gain1;
 
-        $("#filter1cutoff").val(leapControlled.Frequency1).trigger('change');
-        $("#filter1q").val(leapControlled.Resonance1).trigger('change');
-        $("#filter1gain").val(leapControlled.Gain1).trigger('change');
+        ls.gui.lpCutoff.value = leapControlled.Frequency1;
+        ls.gui.lpResonance.value = leapControlled.Resonance1;
+        ls.gui.lpGain.value = leapControlled.Gain1;
 
       } else
       {
@@ -48,9 +47,9 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
         sampler.filters[1].Q.value = leapControlled.Resonance2;
         sampler.filterGain[1].value = leapControlled.Gain2;
 
-        $("#filter2cutoff").val(leapControlled.Frequency2).trigger('change');
-        $("#filter2q").val(leapControlled.Resonance2).trigger('change');
-        $("#filter2gain").val(leapControlled.Gain2).trigger('change');
+        ls.gui.hpCutoff.value = leapControlled.Frequency2;
+        ls.gui.hpResonance.value = leapControlled.Resonance2;
+        ls.gui.hpGain.value = leapControlled.Gain2;
       }
     }
 
