@@ -24,6 +24,7 @@ ls.GUI = function (sampler, sample){
     max: 22000,
     change: function (newVal) { 
       sampler.filters[0].frequency.value = newVal;
+      console.log("filter 1 cutoff val" + newVal);
     }
   });
 
@@ -32,14 +33,16 @@ ls.GUI = function (sampler, sample){
     max: 30,
     change: function (newVal) { 
       sampler.filters[0].Q.value = newVal;
+      console.log("filter 1 q val" + newVal);
     }
   });
 
   this.lpGain = new ls.Knob({
     el: "#filter1gain",
-    max: 1,
+    min: 0,
+    max: 100,
     change: function (newVal) { 
-      sampler.filterGain[0].value = newVal; 
+      sampler.filterGain[0].gain.value = newVal/100; 
     }
   });
 
@@ -61,9 +64,10 @@ ls.GUI = function (sampler, sample){
 
   this.hpGain = new ls.Knob({
     el: "#filter2gain",
-    max: 1,
+    min: 0,
+    max: 100,
     change: function (newVal) { 
-      sampler.filterGain[1].value = newVal; 
+      sampler.filterGain[1].gain.value = newVal/100; 
     }
   });
 
