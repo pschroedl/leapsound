@@ -23,16 +23,12 @@ var ZPlaneSampler = function(source, context){
   this.filters[0] = context.createBiquadFilter();
   this.filters[0].type = "lowpass";
   this.filters[0].frequency.value = 1000;
-  this.filters[0].gain.value = 1;
+  this.filters[0].gain.value = 0;
 
   this.filters[1] = context.createBiquadFilter();
   this.filters[1].type = "highpass";
   this.filters[1].frequency.value = 1000;
-  this.filters[1].gain.value = 1;
-
-  // this.bandPassFilterNode = context.createBiquadFilter();
-  // this.bandPassFilterNode.type = "lowpass";
-  // this.bandPassFilterNode.frequency.value = 1000;
+  this.filters[1].gain.value = 0;
 
   this.splitterNode = context.createChannelSplitter(2);
   this.mergerNode = context.createChannelMerger(2);
@@ -41,20 +37,6 @@ var ZPlaneSampler = function(source, context){
   this.outputGainNode.gain.value = 10;
   
   this.compressorNode = context.createDynamicsCompressor();
-
-/* only in here for compatibility */
-  //Create Low frequency oscillator
-  // this.lfoNode = context.createOscillator();
-  // this.lfoNode.type = "sine";
-  // this.lfoNode.frequency.value = 10;
-  // this.lfoNode.start(0);
-
-  // //Gain node from the LFO to filer
-  // this.lfoGain = context.createGain();
-  // this.lfoGain.gain.value = 100;
-  // this.lfoNode.connect(this.lfoGain);
-  // this.lfoGain.connect(this.filterNode.frequency);
-/* End only in here for compatibility */
 
   //Attach filter to the splitter then back to merger
   source.connect(this.splitterNode);
