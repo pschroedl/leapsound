@@ -29,8 +29,19 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
         sampler.filters[0].frequency.value = leapControlled.Frequency1*10;
         //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
         sampler.filters[0].Q.value = leapControlled.Resonance1/10;
+      } else
+      {
+        leapControlled.Frequency2 = frame.hands[0].palmPosition[1];
+        leapControlled.Resonance2 = frame.hands[0].palmPosition[0];
+        leapControlled.LFORate = frame.hands[0].palmPosition[2];
 
+        $("#filter2cutoff").val(frame.hands[0].palmPosition[1]*10).trigger('change');
+        $("#filter2q").val(frame.hands[0].palmPosition[0]).trigger('change');
+        //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
 
+        sampler.filters[0].frequency.value = leapControlled.Frequency2*10;
+        //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
+        sampler.filters[0].Q.value = leapControlled.Resonance2/10;
       }
     }
 

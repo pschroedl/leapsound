@@ -11,7 +11,7 @@ $(document).ready(function(){
 /* Load sample file over http to our buffer */
   
   var getSample = new XMLHttpRequest(); 
-  getSample.open("GET","./assets/01 Rotten Apple.mp3",true);
+  getSample.open("GET","./assets/02 Nutshell.mp3",true);
   getSample.responseType = "arraybuffer";
   getSample.onload = function(){
     var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
