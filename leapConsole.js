@@ -14,9 +14,12 @@ var leapConsole = function(leapControlled, leapHand1){
       + leapControlled.HighPassFreq);
 
     console.log("(x,y,z) : "
-      + leapHand1[0]
+      + leapHand1.palmPosition[0]
       + " " 
-      + leapHand1[1] 
+      + leapHand1.palmPosition[1] 
       + " " 
-      + leapHand1[2]);
+      + leapHand1.palmPosition[2]);
+    
+    console.log("# of fingers :" + leapHand1.fingers.length);
+
 }
