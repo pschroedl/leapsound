@@ -8,6 +8,10 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
   leapControlled.LFORate = 10;
   leapControlled.LFOGain = 80;
 
+  var x = 0;
+  var y = 0;
+  var z = 0;
+
 /* Main leap control loop */
 
   Leap.loop(function(frame) {
@@ -17,31 +21,35 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
     }
 
     if (frame.hands[0] != undefined){
-       if (frame.hands[0].fingers.length === 1){
-        leapControlled.Frequency1 = frame.hands[0].palmPosition[1];
-        leapControlled.Resonance1 = frame.hands[0].palmPosition[0];
-        leapControlled.LFORate = frame.hands[0].palmPosition[2];
+        x = frame.hands[0].palmPosition[0];
+        y = frame.hands[0].palmPosition[1];
+        z = frame.hands[0].palmPosition[2];
 
-        $("#filter1cutoff").val(frame.hands[0].palmPosition[1]*10).trigger('change');
-        $("#filter1q").val(frame.hands[0].palmPosition[0]).trigger('change');
+       if (frame.hands[0].fingers.length === 1){
+        leapControlled.Frequency1 = (y*22000)/690;
+        leapControlled.Resonance1 = (x*30)/300;
+        leapControlled.LFORate = z;
+
+        $("#filter1cutoff").val(leapControlled.Frequency1).trigger('change');
+        $("#filter1q").val(leapControlled.Resonance1).trigger('change');
         //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
 
-        sampler.filters[0].frequency.value = leapControlled.Frequency1*10;
-        //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
-        sampler.filters[0].Q.value = leapControlled.Resonance1/10;
+        // sampler.filters[0].frequency.value = leapControlled.Frequency1;
+        // //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
+        // sampler.filters[0].Q.value = leapControlled.Resonance1/10;
       } else
       {
-        leapControlled.Frequency2 = frame.hands[0].palmPosition[1];
-        leapControlled.Resonance2 = frame.hands[0].palmPosition[0];
-        leapControlled.LFORate = frame.hands[0].palmPosition[2];
+        leapControlled.Frequency2 = (y*22000)/690;
+        leapControlled.Resonance2 = (x*30)/300;
+        leapControlled.LFORate = z;
 
-        $("#filter2cutoff").val(frame.hands[0].palmPosition[1]*10).trigger('change');
-        $("#filter2q").val(frame.hands[0].palmPosition[0]).trigger('change');
+        $("#filter2cutoff").val(leapControlled.Frequency2).trigger('change');
+        $("#filter2q").val(leapControlled.Resonance2).trigger('change');
         //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
 
-        sampler.filters[0].frequency.value = leapControlled.Frequency2*10;
-        //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
-        sampler.filters[0].Q.value = leapControlled.Resonance2/10;
+        // sampler.filters[0].frequency.value = leapControlled.Frequency2;
+        // //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
+        // sampler.filters[0].Q.value = leapControlled.Resonance2/10;
       }
     }
 
@@ -58,6 +66,6 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
     // $("#lforate").val(leapControlled.LFORate).trigger('change');
     // $("#hpfreq").val(leapControlled.Frequency2*10).trigger('change');
 
-    leapConsole(leapControlled, frame.hands[0].palmPosition);
+    leapConsole(leapControlled, frame.hands[0]);
   });
 };
