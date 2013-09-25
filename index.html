@@ -1,22 +1,29 @@
+<!doctype html>
 <html>
   <head>   
 
-    <link rel="stylesheet" type="text/css" href="css/reset.css" />
-    <link rel="stylesheet" type="text/css" href="css/styles.css" />
+    <link rel="stylesheet" href="css/reset.css">
+    <link rel="stylesheet" href="css/styles.css">
 
-    <script type="text/javascript" src="lib/jquery.min.js"></script>
-    <script type="text/javascript"src="http://js.leapmotion.com/0.2.1/leap.js"></script>
-    <script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
-    <script type="text/javascript" src="lib/jquery.knob.js"></script>
-    <script type="text/javascript" src="lib/dat.gui.min.js"></script>
+    <script src="lib/jquery.min.js"></script>
+    <script src="http://js.leapmotion.com/0.2.1/leap.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/three.js/r58/three.min.js"></script>
+    <script src="lib/jquery.knob.js"></script>
+    <script src="lib/dat.gui.min.js"></script>
+    <script src="js/ls.js"></script>
+    <script src="js/ls.Knob.js"></script>
+    <script src="js/ls.GUI.js"></script>
 
-    <script type="text/javascript" src="js/initAudioContext.js"></script>
-    <script type="text/javascript" src="js/zplaneSampler.js"></script>
-    <script type="text/javascript" src="js/gui.js"></script>
-    <script type="text/javascript" src="js/leapConsole.js"></script>
-    <script type="text/javascript" src="js/leapControl.js"></script>
-    <script type="text/javascript" src="js/main.js"></script>
-  </head> 
+    <script src="js/initAudioContext.js"></script>
+    <script src="js/zplaneSampler.js"></script>
+    <script src="js/leapConsole.js"></script>
+    <script src="js/leapControl.js"></script>
+
+    <script>
+      $(ls.init);
+    </script>
+  </head>
+
   <body>
     <div>
       <h1 id="welcome">LeapFilter</h1>
