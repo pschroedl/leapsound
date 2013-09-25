@@ -51,10 +51,7 @@ var ZPlaneSampler = function(source, context){
   this.filterGain[0].connect(this.mergerNode);
   this.filterGain[1].connect(this.mergerNode);
 
-  this.filterGain[0].value = 0;
-  this.filterGain[1].value = 0;
-
   this.mergerNode.connect(this.outputGainNode);
-  this.outputGainNode.connect(this.compressorNode);
-  this.compressorNode.connect(context.destination);
+  this.outputGainNode.connect(context.destination);
+  //this.compressorNode.connect(context.destination);
 }
