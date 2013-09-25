@@ -1,11 +1,12 @@
 var leapControl = function(sampler, soundSource, sliders, visualizer){
 /* Default var setting, control assignments */
   var leapControlled = {};
-  leapControlled.Frequency = 200;
+  leapControlled.Frequency1 = 200;  
+  leapControlled.Frequency2 = 200;
+  leapControlled.Resonance1 = 0;
+  leapControlled.Resonance2 = 0;
   leapControlled.LFORate = 10;
   leapControlled.LFOGain = 80;
-  leapControlled.Resonance = 0;
-  leapControlled.HighPassFreq = 100;
 
 /* Main leap control loop */
 
@@ -17,9 +18,9 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
     if (frame.hands.length >= 1){
       if (frame.hands[0].fingers.length >= 2){
         var leapHand = frame.data.hands[0];
-        leapControlled.Frequency = leapHand.palmPosition[1];
+        leapControlled.Frequency1 = leapHand.palmPosition[1];
         leapControlled.LFORate = leapHand.palmPosition[2];
-        leapControlled.Resonance = leapHand.palmPosition[0];
+        leapControlled.Resonance1 = leapHand.palmPosition[0];
       }
     }
 
@@ -29,16 +30,16 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
 
     //Assign changed gui.param and leap values to synth properties
 
-    sampler.filterNode.frequency.value = leapControlled.Frequency*10;
+    sampler.filters[0].frequency.value = leapControlled.Frequency1*10;
     sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
-    sampler.filterNode.Q.value = leapControlled.Resonance/10;
+    sampler.filters[0].Q.value = leapControlled.Resonance1/10;
 
-    sampler.highPassFilterNode = leapControlled.HighPassFreq*10;
+    sampler.highPassFilterNode = leapControlled.Frequency2*10;
 
-    $("#frequency").val(leapControlled.Frequency*10).trigger('change');
+    $("#frequency").val(sampler.filters[0].frequency.value).trigger('change');
     $("#resonance").val(leapControlled.Resonance).trigger('change');
     $("#lforate").val(leapControlled.LFORate).trigger('change');
-    $("#hpfreq").val(leapControlled.HighPassFreq*10).trigger('change');
+    $("#hpfreq").val(leapControlled.Frequency2*10).trigger('change');
 
     leapConsole(leapControlled);
   });
