@@ -104,7 +104,7 @@ var Gui = function (sampler, sample){
       'angleArc':250,
       'fgcolor':"#66EE66",
       'change' : function (newVal) { 
-      sampler.filters[0].gain.value = newVal; 
+      sampler.filterGain[0].value = newVal; 
       console.log(newVal);},
     });
 
@@ -152,7 +152,7 @@ var Gui = function (sampler, sample){
       'angleArc':250,
       'fgcolor':"#66EE66",
       'change' : function (newVal) { 
-      sampler.filters[1].gain.value = newVal; 
+      sampler.filterGain[0].value = newVal; 
       console.log(newVal);},
     });
 
