@@ -17,14 +17,14 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
     }
 
     if (frame.hands[0] != undefined){
-       if (frame.hands[0].fingers.length >= 2){
+       if (frame.hands[0].fingers.length === 1){
         leapControlled.Frequency1 = frame.hands[0].palmPosition[1];
         leapControlled.Resonance1 = frame.hands[0].palmPosition[0];
         leapControlled.LFORate = frame.hands[0].palmPosition[2];
 
         $("#filter1cutoff").val(frame.hands[0].palmPosition[1]*10).trigger('change');
         $("#filter1q").val(frame.hands[0].palmPosition[0]).trigger('change');
-        $("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
+        //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
 
         sampler.filters[0].frequency.value = leapControlled.Frequency1*10;
         //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
