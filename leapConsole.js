@@ -1,4 +1,4 @@
-var leapConsole = function(leapControlled){
+var leapConsole = function(leapControlled, leapHand1){
     console.clear();
     console.log("Filter Frequency1 : " 
       + leapControlled.Frequency1);
@@ -14,9 +14,9 @@ var leapConsole = function(leapControlled){
       + leapControlled.HighPassFreq);
 
     console.log("(x,y,z) : "
-      + leapControlled.Resonance 
+      + leapHand1[0]
       + " " 
-      + leapControlled.Frequency 
+      + leapHand1[1] 
       + " " 
-      + leapControlled.LFORate);
+      + leapHand1[2]);
 }
