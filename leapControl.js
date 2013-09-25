@@ -30,41 +30,30 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
         leapControlled.Resonance1 = (x*30)/300;
         leapControlled.LFORate = z;
 
+        sampler.filters[0].frequency.value = leapControlled.Frequency1;
+        //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
+        sampler.filters[0].Q.value = leapControlled.Resonance1;
+
+
         $("#filter1cutoff").val(leapControlled.Frequency1).trigger('change');
         $("#filter1q").val(leapControlled.Resonance1).trigger('change');
         //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
 
-        // sampler.filters[0].frequency.value = leapControlled.Frequency1;
-        // //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
-        // sampler.filters[0].Q.value = leapControlled.Resonance1/10;
       } else
       {
         leapControlled.Frequency2 = (y*22000)/690;
         leapControlled.Resonance2 = (x*30)/300;
         leapControlled.LFORate = z;
 
+        sampler.filters[1].frequency.value = leapControlled.Frequency2;
+        //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
+        sampler.filters[1].Q.value = leapControlled.Resonance2;
+
         $("#filter2cutoff").val(leapControlled.Frequency2).trigger('change');
         $("#filter2q").val(leapControlled.Resonance2).trigger('change');
         //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
-
-        // sampler.filters[0].frequency.value = leapControlled.Frequency2;
-        // //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
-        // sampler.filters[0].Q.value = leapControlled.Resonance2/10;
       }
     }
-
-    //Assign changed gui.param and leap values to synth properties
-
-    // sampler.filters[0].frequency.value = leapControlled.Frequency1*10;
-    // //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
-    // sampler.filters[0].Q.value = leapControlled.Resonance1/10;
-
-    // sampler.highPassFilterNode = leapControlled.Frequency2*10;
-
-    // $("#frequency").val(sampler.filters[0].frequency.value).trigger('change');
-    // $("#resonance").val(leapControlled.Resonance).trigger('change');
-    // $("#lforate").val(leapControlled.LFORate).trigger('change');
-    // $("#hpfreq").val(leapControlled.Frequency2*10).trigger('change');
 
     leapConsole(leapControlled, frame.hands[0]);
   });
