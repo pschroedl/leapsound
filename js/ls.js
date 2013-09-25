@@ -11,7 +11,7 @@ var ls = {
   /* Load sample file over http to our buffer */
     
     var getSample = new XMLHttpRequest(); 
-    getSample.open("GET","./assets/03 I Stay Away.mp3",true);
+    getSample.open("GET","./assets/04 No Excuses.mp3",true);
     getSample.responseType = "arraybuffer";
     getSample.onload = function(){
       var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
