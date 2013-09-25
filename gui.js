@@ -99,7 +99,7 @@ var Gui = function (sampler, sample){
   $("#filter1gain")
     .knob({
       'min':0,
-      'max':20,
+      'max':1,
       'angleOffset':-125,
       'angleArc':250,
       'fgcolor':"#66EE66",
@@ -147,7 +147,7 @@ var Gui = function (sampler, sample){
   $("#filter2gain")
     .knob({
       'min':0,
-      'max':20,
+      'max':1,
       'angleOffset':-125,
       'angleArc':250,
       'fgcolor':"#66EE66",

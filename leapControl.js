@@ -5,8 +5,8 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
   leapControlled.Frequency2 = 22000;
   leapControlled.Resonance1 = 0;
   leapControlled.Resonance2 = 0;
-  leapControlled.LFORate = 10;
-  leapControlled.LFOGain = 80;
+  leapControlled.Gain1 = 0;
+  leapControlled.Gain2 = 0;
 
   var x = 0;
   var y = 0;
@@ -28,30 +28,29 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
        if (frame.hands[0].fingers.length === 1){
         leapControlled.Frequency1 = (y*22000)/690;
         leapControlled.Resonance1 = (x*30)/300;
-        leapControlled.LFORate = z;
+        leapControlled.Gain1 = z/300;
 
         sampler.filters[0].frequency.value = leapControlled.Frequency1;
-        //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
         sampler.filters[0].Q.value = leapControlled.Resonance1;
-
+        sampler.filters[0].gain.value = leapControlled.Gain1;
 
         $("#filter1cutoff").val(leapControlled.Frequency1).trigger('change');
         $("#filter1q").val(leapControlled.Resonance1).trigger('change');
-        //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
+        $("#filter1gain").val(leapControlled.Resonance1).trigger('change');
 
       } else
       {
         leapControlled.Frequency2 = (y*22000)/690;
         leapControlled.Resonance2 = (x*30)/300;
-        leapControlled.LFORate = z;
+        leapControlled.Gain2 = z/300;
 
         sampler.filters[1].frequency.value = leapControlled.Frequency2;
-        //sampler.lfoNode.frequency.value = Math.abs(leapControlled.LFORate/10);
         sampler.filters[1].Q.value = leapControlled.Resonance2;
+        sampler.filters[1].gain.value = leapControlled.Gain2;
 
         $("#filter2cutoff").val(leapControlled.Frequency2).trigger('change');
         $("#filter2q").val(leapControlled.Resonance2).trigger('change');
-        //$("#filter1lforate").val(frame.hands[0].palmPosition[2]).trigger('change');
+        $("#filter2gain").val(leapControlled.Resonance2).trigger('change');
       }
     }
 
