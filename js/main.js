@@ -11,7 +11,7 @@ $(document).ready(function(){
 /* Load sample file over http to our buffer */
   
   var getSample = new XMLHttpRequest(); 
-  getSample.open("GET","./assets/02 Nutshell.mp3",true);
+  getSample.open("GET","./assets/03 I Stay Away.mp3",true);
   getSample.responseType = "arraybuffer";
   getSample.onload = function(){
     var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
@@ -25,6 +25,7 @@ $(document).ready(function(){
 
   var sliders =  new Gui(sampler,soundSource);
   leapControl(sampler, soundSource, sliders);
-  
+  $('body').append('<a href="http://hackreactor.com"><img style="position: fixed; top: 0; right: 0; border: 0;" src="http://i.imgur.com/x86kKmF.png" alt="Built at Hack Reactor"></a>');
+
 });
 
