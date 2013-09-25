@@ -31,11 +31,11 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
 
         sampler.filters[0].frequency.value = leapControlled.Frequency1;
         sampler.filters[0].Q.value = leapControlled.Resonance1;
-        sampler.filterGain[0].value = leapControlled.Gain1;
+        sampler.filterGain[0].gain.value = leapControlled.Gain1;
 
         ls.gui.lpCutoff.value = leapControlled.Frequency1;
         ls.gui.lpResonance.value = leapControlled.Resonance1;
-        ls.gui.lpGain.value = leapControlled.Gain1;
+        ls.gui.lpGain.value = leapControlled.Gain1 * 100;
 
       } else
       {
@@ -45,14 +45,14 @@ var leapControl = function(sampler, soundSource, sliders, visualizer){
 
         sampler.filters[1].frequency.value = leapControlled.Frequency2;
         sampler.filters[1].Q.value = leapControlled.Resonance2;
-        sampler.filterGain[1].value = leapControlled.Gain2;
+        sampler.filterGain[1].gain.value = leapControlled.Gain2;
 
         ls.gui.hpCutoff.value = leapControlled.Frequency2;
         ls.gui.hpResonance.value = leapControlled.Resonance2;
-        ls.gui.hpGain.value = leapControlled.Gain2;
+        ls.gui.hpGain.value = leapControlled.Gain2 * 100;
       }
     }
-
-    leapConsole(leapControlled, frame.hands[0]);
+    
+    leapConsole(leapControlled, frame.hands[0], sampler);
   });
 };
