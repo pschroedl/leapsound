@@ -1,6 +1,9 @@
   ls.LeapControlledFilter = function(options){
     this.options = $.extend({}, this.options, options);
     
+
+    /* Define Getters and Setters for each Option */
+
     Object.defineProperty(this, 'frequency', {
       set: function(val) {
         this.options.frequency = val;
