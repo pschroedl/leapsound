@@ -24,16 +24,36 @@ ls.GUI = function (sampler, sample){
     max: 22000,
     change: function (newVal) { 
       sampler.filters[0].frequency.value = newVal;
-      console.log("filter 1 cutoff val" + newVal);
     }
   });
+
+  // this.lpMin = new ls.Knob({
+  //   el: "#filter1min",
+  //   width: 75,
+  //   height: 75,
+  //   max: 22000,
+  //   change: function (newVal) { 
+  //     sampler.filters[0].frequency.value = newVal;
+  //     console.log("filter 1 min" + newVal);
+  //   }
+  // });
+
+  // this.lpMax = new ls.Knob({
+  //   el: "#filter1max",
+  //   width: 75,
+  //   height: 75,
+  //   max: 22000,
+  //   change: function (newVal) { 
+  //     sampler.filters[0].frequency.value = newVal;
+  //     console.log("filter 1 max" + newVal);
+  //   }
+  // });
 
   this.lpResonance = new ls.Knob({
     el: "#filter1q",
     max: 30,
     change: function (newVal) { 
       sampler.filters[0].Q.value = newVal;
-      console.log("filter 1 q val" + newVal);
     }
   });
 
