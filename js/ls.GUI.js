@@ -1,14 +1,21 @@
 ls.GUI = function (sampler, sample){
 /* Dat.Gui controls for debugging "magic" parameters */
   var gui = new dat.GUI();
+
   this.loopStart = sample.loopStart;
   this.loopEnd = sample.loopEnd;
+
+  gui.domElement.style.position = 'absolute';
+  gui.domElement.style.top = '50px';
+  gui.domElement.style.left = '0px';
+
+  document.body.appendChild( gui.domElement );
 
   gui.add(this, 'loopStart').min(0).max(1)
     .onChange(function(newVal){
       sample.loopStart = newVal;
   });
-    
+
   gui.add(this, 'loopEnd').min(0).max(1)
     .onChange(function(newVal){
       sample.loopEnd = newVal;
