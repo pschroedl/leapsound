@@ -51,4 +51,10 @@ ls.GUI = function (sampler){
     }
   });
 
+  this.filters = [];
+  var lpFilter = [this.lpCutoff, this.lpResonance, this.lpGain];
+  var hpFilter = [this.hpCutoff, this.hpResonance, this.hpGain];
+  this.filters.push(lpFilter);
+  this.filters.push(hpFilter);
+
 };
