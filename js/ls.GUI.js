@@ -1,23 +1,19 @@
 ls.GUI = function (sampler, sample){
-  // var gui = new dat.GUI();
-  // this.loopStart = sample.loopStart;
-  // this.loopEnd = sample.loopEnd;
+/* Dat.Gui controls for debugging "magic" parameters */
 
-  // gui.add(this, 'loopStart').min(0).max(1)
-  //   .onChange(function(newVal){
-  //     sample.loopStart = newVal;
-  // });
-  // gui.add(this, 'loopEnd').min(0).max(1)
-  //   .onChange(function(newVal){
-  //     sample.loopEnd = newVal;
+  var gui = new dat.GUI();
+  this.loopStart = sample.loopStart;
+  this.loopEnd = sample.loopEnd;
 
-  // $("#filter1cutoff").knob(
-  //   $.extend({}, params, {
-  //     'change': function (newVal) { 
-  //       sampler.filters[0].frequency.value = newVal; 
-  //     }
-  //   })
-  // );
+  gui.add(this, 'loopStart').min(0).max(1)
+    .onChange(function(newVal){
+      sample.loopStart = newVal;
+  });
+  gui.add(this, 'loopEnd').min(0).max(1)
+    .onChange(function(newVal){
+      sample.loopEnd = newVal;
+
+/* Query Filter control knobs using ls.Knob.js*/
 
   this.lpCutoff = new ls.Knob({
     el: "#filter1cutoff",
@@ -26,28 +22,6 @@ ls.GUI = function (sampler, sample){
       sampler.filters[0].frequency.value = newVal;
     }
   });
-
-  // this.lpMin = new ls.Knob({
-  //   el: "#filter1min",
-  //   width: 75,
-  //   height: 75,
-  //   max: 22000,
-  //   change: function (newVal) { 
-  //     sampler.filters[0].frequency.value = newVal;
-  //     console.log("filter 1 min" + newVal);
-  //   }
-  // });
-
-  // this.lpMax = new ls.Knob({
-  //   el: "#filter1max",
-  //   width: 75,
-  //   height: 75,
-  //   max: 22000,
-  //   change: function (newVal) { 
-  //     sampler.filters[0].frequency.value = newVal;
-  //     console.log("filter 1 max" + newVal);
-  //   }
-  // });
 
   this.lpResonance = new ls.Knob({
     el: "#filter1q",
