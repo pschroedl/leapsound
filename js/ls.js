@@ -21,7 +21,8 @@ var ls = {
 
   /* View GUI. Init */
 
-    ls.gui = new ls.GUI(sampler,soundSource);
+    ls.gui = new ls.GUI(sampler);
+    ls.datdotgui = new ls.datGUI(soundSource, sampler);
 
   /* Leap Motion control loop */
 
