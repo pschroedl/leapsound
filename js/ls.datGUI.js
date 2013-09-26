@@ -5,7 +5,7 @@ ls.datGUI = function(sample, sampler){
   gui.domElement.style.position = 'absolute';
   gui.domElement.style.top = '0px';
   gui.domElement.style.left = '0px';
-debugger;
+
   this.loopStart = sample.loopStart;
   this.loopEnd = sample.loopEnd;
 
