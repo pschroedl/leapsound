@@ -51,10 +51,64 @@ ls.GUI = function (sampler){
     }
   });
 
+  this.bpCutoff = new ls.Knob({
+    el: "#filter3cutoff",
+    max: 22000,
+    change: function (newVal) { 
+      sampler.filters[2].frequency.value = newVal;
+    }
+  });
+
+  this.bpResonance = new ls.Knob({
+    el: "#filter3q",
+    max: 30,
+    change: function (newVal) { 
+      sampler.filters[2].Q.value = newVal;
+    }
+  });
+
+  this.bpGain = new ls.Knob({
+    el: "#filter3gain",
+    min: 0,
+    max: 100,
+    change: function (newVal) { 
+      sampler.filterGain[2].gain.value = newVal/100; 
+    }
+  });
+
+  this.spCutoff = new ls.Knob({
+    el: "#filter4cutoff",
+    max: 22000,
+    change: function (newVal) { 
+      sampler.filters[3].frequency.value = newVal;
+    }
+  });
+
+  this.spResonance = new ls.Knob({
+    el: "#filter4q",
+    max: 30,
+    change: function (newVal) { 
+      sampler.filters[3].Q.value = newVal;
+    }
+  });
+
+  this.spGain = new ls.Knob({
+    el: "#filter4gain",
+    min: 0,
+    max: 100,
+    change: function (newVal) { 
+      sampler.filterGain[3].gain.value = newVal/100; 
+    }
+  });
+
   this.filters = [];
   var lpFilter = [this.lpCutoff, this.lpResonance, this.lpGain];
   var hpFilter = [this.hpCutoff, this.hpResonance, this.hpGain];
+  var bpFilter = [this.bpCutoff, this.bpResonance, this.bpGain];
+  var spFilter = [this.spCutoff, this.spResonance, this.spGain];
   this.filters.push(lpFilter);
   this.filters.push(hpFilter);
+  this.filters.push(bpFilter);
+  this.filters.push(spFilter);
 
 };

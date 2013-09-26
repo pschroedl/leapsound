@@ -53,7 +53,7 @@ var leapControl = function(sampler, soundSource){
 
   var createLeapFilters = function(channels){
     var filterArray = [];
-    for (var i = 0; i < 2; i ++){
+    for (var i = 0; i < channels; i ++){
       var filter = new LeapControlledFilter();
       filterArray.push(filter);
     }
@@ -71,7 +71,6 @@ var leapControl = function(sampler, soundSource){
     //slightly magic number 1.5 and negation to get desired
     //behavior from leap - make logarithmic?
     leapFilters[i].gain = -((z/zRange)-1.5)/2;
-debugger;
     
     sampler.filters[i].frequency.value = leapFilters[i].frequency;
     sampler.filters[i].Q.value = leapFilters[i].resonance;
@@ -84,7 +83,7 @@ debugger;
 
 /* Main leap control loop */
 
-  var leapFilters = createLeapFilters(2);
+  var leapFilters = createLeapFilters(4);
 
   Leap.loop(function(frame) {
 
@@ -98,9 +97,11 @@ debugger;
       z = frame.hands[0].palmPosition[2];
       if (frame.fingers[0] !== undefined && frame.fingers[1] === undefined){
         updateFilters(leapFilters,0,x,y,z);
+        updateFilters(leapFilters,2,x,y,z);
       }
       if (frame.fingers[1] !== undefined){
         updateFilters(leapFilters,1,x,y,z);
+        updateFilters(leapFilters,3,x,y,z);
       } 
     }
     //leapConsole(leapControlled, frame.hands[0], sampler);
