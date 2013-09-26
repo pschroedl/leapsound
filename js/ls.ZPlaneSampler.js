@@ -24,16 +24,20 @@ var ZPlaneSampler = function(source, context){
   this.filters[0] = context.createBiquadFilter();
   this.filters[0].type = "lowpass";
   this.filters[0].frequency.value = 1000;
+  this.filters[0].min = 0;
+  this.filters[0].max = 1000;
 
   this.filters[1] = context.createBiquadFilter();
   this.filters[1].type = "highpass";
   this.filters[1].frequency.value = 1000;
+  this.filters[1].min = 0;
+  this.filters[1].max = 1000;
 
   this.splitterNode = context.createChannelSplitter(2);
   this.mergerNode = context.createChannelMerger(2);
 
   this.outputGainNode = context.createGain();
-  this.outputGainNode.gain.value = 10;
+  this.outputGainNode.gain.value = 1;
   
   this.compressorNode = context.createDynamicsCompressor();
 
