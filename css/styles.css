@@ -15,13 +15,27 @@ h1 {
 }
 
 .knob{
-   display: inline-block;
+  display: inline-block;
 }
 
+.small{
+  display: inline-block;
+}
+
+
 .container{
-    background-color: #555;
-    clear: left;
-    height: 540px;
-    width: 700px;
-    float: left;
+  display: block;
+  height: 273px;
+  width: 400px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+
+.controlbar{
+  display: block;
+  height: 135px;
+  width: 384px;
+  margin-right: auto;
+  margin-left: auto;
 }
