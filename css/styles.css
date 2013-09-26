@@ -7,35 +7,45 @@ html {
 body {
   margin: 0;
   font-family: sans-serif;
-  font-size: 12pt;
+  font-size: 22pt;
 }
 
 h1 {
-  font-size: 24pt;
+  font-size: 36pt;
 }
 
 .knob{
   display: inline-block;
+  padding: 10px;
 }
 
 .small{
   display: inline-block;
 }
 
-
-.container{
+.outercontainer{
   display: block;
-  height: 273px;
-  width: 400px;
+  padding: 20px;
+  height: 440px;
+  width: 503px;
   margin-right: auto;
   margin-left: auto;
 }
 
+.container{
+  display: block;
+  padding: 20px;
+  border: 20px;
+  height: 300px;
+  width: 466px;
+  margin-right: auto;
+  margin-left: auto;
+}
 
 .controlbar{
   display: block;
-  height: 135px;
-  width: 384px;
+  height: 179px;
+  width: 475px;
   margin-right: auto;
   margin-left: auto;
 }
