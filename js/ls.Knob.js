@@ -24,24 +24,3 @@ ls.Knob.prototype.options = {
   angleArc: 250,
   fgcolor: '#66EE66'
 };
-
-
-  // var Knob = function(attributeValues){
-  //   //attributeValues is an array object containing min, 
-  //   //max,angleOffset,angleArc,fgcolor, and target object
-  //   //in that order.
-
-  //   //params object and defaults
-  //   this.parameters = [
-  //     'min',
-  //     'max',
-  //     'angleOffset',
-  //     'angleArc',
-  //     'fgcolor',
-  //     'target' ];
-
-  //   for(var i = 0; i < attributeValues.length; i++ ){
-  //     this[parameters[i]] = attributeValues[i];  //is this legal? seems too easy
-  //   }
-
-  // };
