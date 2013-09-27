@@ -19,16 +19,16 @@ filters 1 and 2 set to lowpass and 3 and 4 to highpass.
 
 You can play with the demo here :  http://doesntexistyet-elasticbeanstalk.com
 
-The Web Audio API spec was only written last year, and this posed some serious
-challenges in terms of lack of  documentation and examples that reflect the
-state of the current interface.
+The Web Audio API spec hasn't been around too long, and this contributed to some serious
+challenges.  Particularly, the lack of documentation and examples that reflect the
+state of the current interface - as well as the existance outdated documentation and examples.
 
 This was also only partly the case with the Leap.js API  ( which has pretty
-good docs and some great examples )The difficulties I encountered using the
+good docs and some great examples ).  The difficulties I encountered using the
 Leap were mostly in the areas of interpreting and scaling the data from the
 Leap Motion Controller, as well as figuring out ways of using the data so that
 the user can interact in an intuitive way.
 
 To save time and headache, I utilized jqueryui-knob
-(https://github.com/aterrien/jQuery-Knob) and dat.gui for the user interface
-(https://code.google.com/p/dat-gui/).
+( https://github.com/aterrien/jQuery-Knob ) and dat.gui for the user interface
+( https://code.google.com/p/dat-gui/ ).
