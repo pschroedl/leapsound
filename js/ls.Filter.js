@@ -31,6 +31,15 @@
       }
     });
 
+    Object.defineProperty(this, 'resonance', {
+      set: function(val) {
+        this.filter.Q.value = val;
+      },
+      get: function(){
+        return this.filter.Q.value;
+      }
+    });
+
     Object.defineProperty(this, 'min', {
       set: function(val) {
         this.filter.min = val;
@@ -55,7 +64,7 @@
       }
     });
 
-    Object.defineProperty(this, 'outputTo', {
+    Object.defineProperty(this, 'output', {
       set: function(val) {
         this.filter.connect(val);
       }

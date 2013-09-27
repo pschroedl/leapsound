@@ -5,7 +5,7 @@ ls.GUI = function (sampler){
     el: "#filter1cutoff",
     max: 22000,
     change: function (newVal) { 
-      sampler.filters[0].frequency.value = newVal;
+      sampler.filters[0].frequency = newVal;
     }
   });
 
@@ -13,7 +13,7 @@ ls.GUI = function (sampler){
     el: "#filter1q",
     max: 30,
     change: function (newVal) { 
-      sampler.filters[0].Q.value = newVal;
+      sampler.filters[0].resonance = newVal;
     }
   });
 
@@ -30,7 +30,7 @@ ls.GUI = function (sampler){
     el: "#filter2cutoff",
     max: 22000,
     change: function (newVal) { 
-      sampler.filters[1].frequency.value = newVal;
+      sampler.filters[1].frequency = newVal;
     }
   });
 
@@ -38,7 +38,7 @@ ls.GUI = function (sampler){
     el: "#filter2q",
     max: 30,
     change: function (newVal) { 
-      sampler.filters[1].Q.value = newVal;
+      sampler.filters[1].resonance = newVal;
     }
   });
 
@@ -55,7 +55,7 @@ ls.GUI = function (sampler){
     el: "#filter3cutoff",
     max: 22000,
     change: function (newVal) { 
-      sampler.filters[2].frequency.value = newVal;
+      sampler.filters[2].frequency = newVal;
     }
   });
 
@@ -63,7 +63,7 @@ ls.GUI = function (sampler){
     el: "#filter3q",
     max: 30,
     change: function (newVal) { 
-      sampler.filters[2].Q.value = newVal;
+      sampler.filters[2].resonance = newVal;
     }
   });
 
@@ -80,7 +80,7 @@ ls.GUI = function (sampler){
     el: "#filter4cutoff",
     max: 22000,
     change: function (newVal) { 
-      sampler.filters[3].frequency.value = newVal;
+      sampler.filters[3].frequency = newVal;
     }
   });
 
@@ -88,7 +88,7 @@ ls.GUI = function (sampler){
     el: "#filter4q",
     max: 30,
     change: function (newVal) { 
-      sampler.filters[3].Q.value = newVal;
+      sampler.filters[3].resonance = newVal;
     }
   });
 
