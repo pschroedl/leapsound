@@ -1,10 +1,7 @@
-leapFilter
+leapSound
 =========
-
-Codenamed LeapSound ( internally using the namespace 'ls' ), leapFilter is an
-implementation of four parallel filters. It was inspired by the Z-Plane
-filters in hardware samplers made by Emu Systems.  It uses the relatively
-recent Web Audio API, and Leap Motion Javascript API, and as such, will only
+Inspired by the Z-Plane filters in hardware samplers made by Emu Systems, 
+leapSound is an implementation of four parallel filters controlled by the Leap Motion Controller, or the on-screen knobs. It utilizes the Web Audio API, and Leap Motion Javascript API, and as such, will only
 run in Google Chrome ( tested on v29.0.1547.76 ).
 
 The filterbank can be controlled in the 'Z-Plane' manner ( morphing multiple filters in
