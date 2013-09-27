@@ -1,6 +1,5 @@
   ls.LeapControlledFilter = function(options){
     this.options = $.extend({}, this.options, options);
-    
 
     /* Define Getters and Setters for each Option */
 
@@ -35,6 +34,6 @@
 
   ls.LeapControlledFilter.prototype.options = {
     frequency: 0,
-    Resonance: 0,
-    Gain: 0
+    resonance: 0,
+    gain: 0
   };

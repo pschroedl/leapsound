@@ -42,19 +42,19 @@
 
     Object.defineProperty(this, 'min', {
       set: function(val) {
-        this.filter.min = val;
+        this.filter.frequency.minValue = val;
       },
       get: function(){
-        return this.filter.min;
+        return this.filter.frequency.minValue;
       }
     });
 
     Object.defineProperty(this, 'max', {
       set: function(val) {
-        this.filter.max = val;
+        this.filter.frequency.maxValue = val;
       },
       get: function(){
-        return this.filter.max;
+        return this.filter.frequency.maxValue;
       }
     });
 

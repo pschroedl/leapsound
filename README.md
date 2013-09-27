@@ -23,7 +23,7 @@ This was also only partly the case with the Leap.js API  ( which has pretty
 good docs and some great examples ).  The difficulties I encountered using the
 Leap were mostly in the areas of interpreting and scaling the data from the
 Leap Motion Controller, as well as figuring out ways of using the data so that
-the user can interact in an intuitive way.
+the user can interact in an intuitive way.  Also, any errors inside the leap main loop silently fail, making debugging a bit of a chore.
 
 Uses jqueryui-knob( https://github.com/aterrien/jQuery-Knob ) and dat.gui for the user interface
 ( https://code.google.com/p/dat-gui/ ).

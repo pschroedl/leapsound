@@ -1,4 +1,4 @@
-var leapConsole = function(leapControlled, leapHand1, sampler){
+ls.Log = function(leapControlled, leapHand1, sampler){
     console.clear();
     console.log("Filter Frequency1 : " 
       + leapControlled.Frequency1);

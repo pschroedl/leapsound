@@ -9,7 +9,7 @@ var ls = {
   /* Load sample file over http to our buffer */
     
     var getSample = new XMLHttpRequest(); 
-    getSample.open("GET","./assets/Arp1.wav",true);
+    getSample.open("GET","./assets/05 Whale & Wasp.mp3",true);
     getSample.responseType = "arraybuffer";
     getSample.onload = function(){
       var soundBuffer = audioContext.createBuffer(getSample.response,false) //flag is set for stereo
@@ -22,7 +22,7 @@ var ls = {
   /* View GUI. Init */
 
     ls.gui = new ls.GUI(sampler);
-    ls.datdotgui = new ls.datGUI(soundSource, sampler);
+    //ls.datdotgui = new ls.datGUI(soundSource, sampler);
 
   /* Leap Motion control loop */
 
