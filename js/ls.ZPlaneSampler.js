@@ -10,7 +10,7 @@ var ZPlaneSampler = function(source, context){
   source.connect(this.splitterNode);
 
   for(var i = 0; i < 4; i++ ){
-    this.filters.push(new ls.Filter(context, {type:"bandpass"}));
+    this.filters.push(new ls.Filter(context, {type:"lowpass"}));
     this.filterGain[i] = context.createGain();
     this.filters[i].output = this.filterGain[i];
     this.filterGain[i].connect(this.mergerNode);
