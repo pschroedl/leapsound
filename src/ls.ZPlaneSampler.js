@@ -1,4 +1,14 @@
 var ZPlaneSampler = function(source, context){
+
+  //We can't make a routing graph without a context!
+  if (context === undefined){
+    throw new Error('Cannot create sampler - context is undefined.');
+  }
+
+  if (source === undefined){
+    throw new Error('Cannot create sampler - source is undefined.');
+  }
+
 /* An attempt to emulate z-plane filters */
   this.filters = [];
   this.filterGain = [];
