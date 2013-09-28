@@ -1,6 +1,11 @@
 
   ls.Filter = function(context, options){
 
+    //We can't make a filter without a context!
+    if (context === undefined){
+      throw new Error('Cannot create filter - context is undefined');
+    }
+
     this.filter = context.createBiquadFilter();
 
     if (options.type){
