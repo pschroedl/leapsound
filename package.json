@@ -1,0 +1,7 @@
+{
+  "name": "leapSound",
+  "preferGlobal": true,
+  "version": "0.0.1",
+  "author": "Peter F Schroedl <peter_schroedl@icloud.com>",
+  "description": "A Leap Motion controlled bank of filters utilizing Web Audio"
+}
