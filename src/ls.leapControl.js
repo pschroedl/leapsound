@@ -45,14 +45,14 @@ var leapControl = function(sampler, soundSource){
     ls.gui.filters[i][2].value = Math.abs(leapFilters[i].gain * 100);
   };
 
-/* Main leap control loop */
-
   var leapFilters = createLeapFilters(4);
   for (var i = 0; i < 4; i++ ){
     ls.gui.filters[i][0].value = leapFilters[i].frequency;
     ls.gui.filters[i][1].value = leapFilters[i].resonance;
     ls.gui.filters[i][2].value = Math.abs(leapFilters[i].gain * 100);
   }
+
+  /* Main leap control loop */
 
   Leap.loop(function(frame) {
 
