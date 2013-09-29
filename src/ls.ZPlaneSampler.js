@@ -29,10 +29,14 @@ ls.ZPlaneSampler = function(source, context){
     this.filters[i].max = 1000;
   }
 
+  this.filters[0].type = "lowpass";
+  this.filters[1].type = "highpass";
+  this.filters[2].type = "bandpass";
+
   this.splitterNode.connect(this.filters[0].input, 0);
   this.splitterNode.connect(this.filters[1].input, 1);
   this.splitterNode.connect(this.filters[2].input, 0);
-  this.splitterNode.connect(this.filters[3].input, 1);
+  //this.splitterNode.connect(this.filters[3].input, 1);
 
   this.outputGainNode = context.createGain();
   this.outputGainNode.gain.value = .3;
