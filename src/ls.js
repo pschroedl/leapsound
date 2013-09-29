@@ -1,6 +1,6 @@
 var ls = {
   init: function() {
-    var audioContext = initAudioContext();  //throws error if Web Audio API or webkitAudio API is not avail.
+    var audioContext = ls.initAudioContext();  //throws error if Web Audio API or webkitAudio API is not avail.
     
     var soundSource = audioContext.createBufferSource();
 
