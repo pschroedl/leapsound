@@ -15,7 +15,8 @@ ls.ZPlaneSampler = function(source, context){
   this.filterLFOs = [];
   this.splitterNode = context.createChannelSplitter(4);
   this.mergerNode = context.createChannelMerger(4);
-  var filterType;
+  this.dryGain = context.createGain();
+  var filterType = "lowpass";
 
   //Attach filter to the splitter then back to merger
   source.connect(this.splitterNode);
@@ -36,7 +37,7 @@ ls.ZPlaneSampler = function(source, context){
   this.splitterNode.connect(this.filters[0].input, 0);
   this.splitterNode.connect(this.filters[1].input, 1);
   this.splitterNode.connect(this.filters[2].input, 0);
-  //this.splitterNode.connect(this.filters[3].input, 1);
+  this.splitterNode.connect(this.dryGain, 1);
 
   this.outputGainNode = context.createGain();
   this.outputGainNode.gain.value = .3;
