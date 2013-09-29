@@ -1,5 +1,5 @@
 ls.GUI = function (sampler){
-/* Query Filter control knobs using ls.Knob.js*/
+/* Filter control knobs using ls.Knob.js*/
 
   this.f1Cutoff = new ls.Knob({
     el: "#filter1cutoff",

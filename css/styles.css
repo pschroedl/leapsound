@@ -10,43 +10,77 @@ body {
   font-size: 22pt;
 }
 
-h1 {
-  font-size: 36pt;
+
+h2 {
+  font-size: 28pt;
+  text-align: center;
+}
+
+h3 {
+  font-size: 22pt;
+  text-align: center;
+  padding: 10px;
 }
 
 .knob{
   display: inline-block;
-  margin-left: 11px;
+  margin-left: 10px;
+  padding-top: 20px;
   height: 198px;
+}
+
+.knobcaption{
+  font-size: 18pt;
 }
 
 .small{
   display: inline-block;
 }
 
+.heading {
+  font-size: 36pt;
+  color: white;
+  padding-top: 10px;
+  padding-left: 10px;
+}
+
+.subheading {
+  font-size: 18pt;
+  color: white;
+  padding-left: 10px;
+  padding-bottom: 10px;
+}
+
+.topbar{
+  background-color: #000000;
+}
+
 .outercontainer{
   display: block;
   padding: 20px;
-  height: 440px;
-  width: 503px;
+  height: 700px;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
 }
 
 .container{
   display: block;
-  padding: 20px;
   border: 20px;
-  height: 300px;
-  width: 466px;
+  height: 850px;
+  width: 715px;
   margin-right: auto;
   margin-left: auto;
+  border-color: black;
+  border-width: 2px;
+  border-style: solid;
+  border-radius: 10px;
 }
 
 .controlbar{
   display: block;
-  height: 179px;
-  width: 475px;
+  height: 210px;
+  width: 600px;
   margin-right: auto;
   margin-left: auto;
   border-color: black;
@@ -54,4 +88,8 @@ h1 {
   border-style: solid;
   border-radius: 10px;
   margin-bottom: 10px;
+}
+
+.innercontrolbar{
+  padding-left: 10px;
 }

@@ -30,93 +30,84 @@
   </head>
 
   <body>
-
-    <div class="outercontainer">
-      <div>
-        <h1 id="welcome">LeapFilters</h1>
+    <div>
+      <div class="topbar">
+        <div class="heading">LeapFilters - One hand to rule them all</div>
+        <div class="subheading"> A bank of three 4-pole filters powered by the Leap Motion Controller</div>
       </div>
+    </div>
+    <div class="outercontainer">
+
       <div class="container">
+        <h3>Low Pass Filter - One finger</h3>
         <div class="controlbar">
-          <span class="knob">
-            <div>
-              </br>Cutoff
-            </div>
-            <input id="filter1cutoff">
-          </span>
-          <span class="knob">
-            <div>
-              </br>Resonance
-            </div>
-            <input id="filter1q">
-          </span>
-          <span class="knob">
-            <div>
-              </br>Gain
-            </div>
-            <input id="filter1gain">
-          </span>
+          <div class="innercontrolbar">
+            <span class="knob">
+              <input id="filter1cutoff">
+              <div>
+                <h3 class="knobcaption">Cutoff</h3>
+              </div>
+            </span>
+            <span class="knob">
+              <input id="filter1q">
+              <div>
+                <h3 class="knobcaption">Resonance</h3>
+              </div>
+            </span>
+            <span class="knob">
+              <input id="filter1gain">
+              <div>
+                <h3 class="knobcaption">Gain</h3>
+              </div>
+            </span>
+          </div>
         </div>
-        <div class="controlbar">      
-          <span class="knob">
-            <div>
-              </br>Cutoff
-            </div>
-            <input id="filter2cutoff">
-          </span>
-          <span class="knob">
-            <div>
-              </br>Resonance
-            </div>
-            <input id="filter2q">
-          </span>      
-          <span class="knob">
-            <div>
-              </br>Gain
-            </div>
-            <input id="filter2gain">
-          </span>
+        <h3>Band Pass Filter - Two fingers</h3>  
+        <div class="controlbar">
+          <div class="innercontrolbar">    
+            <span class="knob">
+              <input id="filter2cutoff">
+              <div>
+                <h3 class="knobcaption">Cutoff</h3>
+              </div>
+            </span>
+            <span class="knob">
+              <input id="filter2q">
+              <div>
+                <h3 class="knobcaption">Resonance</h3>
+              </div>
+            </span>      
+            <span class="knob">
+              <input id="filter2gain">
+              <div>
+                <h3 class="knobcaption">Gain</h3>
+              </div>
+            </span>
+          </div>
         </div>
-        <div class="controlbar">      
-          <span class="knob">
-            <div>
-              </br>Cutoff
-            </div>
-            <input id="filter3cutoff">
-          </span>
-          <span class="knob">
-            <div>
-              </br>Resonance
-            </div>
-            <input id="filter3q">
-          </span>      
-          <span class="knob">
-            <div>
-              </br>Gain
-            </div>
-            <input id="filter3gain">
-          </span>
+        <h3>High Pass Filter - Three Fingers</h3> 
+        <div class="controlbar">
+          <div class="innercontrolbar">     
+            <span class="knob">
+              <input id="filter3cutoff">
+              <div>
+                <h3 class="knobcaption">Cutoff</h3>
+              </div>
+            </span>
+            <span class="knob">
+              <input id="filter3q">
+              <div>
+                <h3 class="knobcaption">Resonance</h3>
+              </div>
+            </span>      
+            <span class="knob">
+              <input id="filter3gain">
+              <div>
+                <h3 class="knobcaption">Gain</h3>
+              </div>
+            </span>
+          </div>
         </div>
-<!--       <div class="controlbar">      
-          <span class="knob">
-            <div>
-              </br>Cutoff
-            </div>
-            <input id="filter4cutoff">
-          </span>
-          <span class="knob">
-            <div>
-              </br>Resonance
-            </div>
-            <input id="filter4q">
-          </span>      
-          <span class="knob">
-            <div>
-              </br>Gain
-            </div>
-            <input id="filter4gain">
-          </span>
-        </div>
--->
       </div>
     </div>
   </body>
