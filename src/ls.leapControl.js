@@ -7,25 +7,36 @@ var leapControl = function(sampler, soundSource){
   var xRange = 300;
   var yRange = 690;
   var zRange = 300;
-
+  
   var resonanceRange = [40,40,40,40];
-
+  var filterCenter;
+  var filterRange;
+  var translation;
   var filters = sampler.filters;
   var filtergain = sampler.filterGain;
 
   var createLeapFilters = function(channels){
     var filterArray = [];
     for (var i = 0; i < channels; i ++){
-      var filter = new ls.LeapControlledFilter({frequency: 100, resonance: 10, gain: 100});
+      var filter = new ls.LeapControlledFilter({frequency: 11000, resonance: 10, gain: 100});
       filterArray.push(filter);
     }
     return filterArray;
   };
 
-  var updateFilters = function(leapFilters,i,x,y,z){
-    //scales the leap vertical range into range of samplers filters
 
+  var updateFilters = function(leapFilters,i,x,y,z){
+    filterCenter = ls.gui.filters[i][0].value;
+    filterRange = sampler.filters[i].range;
+
+    //scales the leap vertical range into range of samplers filters
     leapFilters[i].frequency = ((y*filters[i].max)/yRange) + filters[i].min; 
+    translation = leapFilters[i].frequency - (filterRange/2);
+    
+    // if(i % 2){
+    //   translation = translation * -1;
+    // }
+    console.log("translation :" + translation);
 
     //translates leap horizontal range to sampler resonance range
     leapFilters[i].resonance = (x*resonanceRange[i])/xRange;
@@ -35,12 +46,12 @@ var leapControl = function(sampler, soundSource){
     //todo - make logarithmic?
     leapFilters[i].gain = -((z/zRange)-1.5)/2;
     //sets values in each web audio api filter
-    sampler.filters[i].frequency = leapFilters[i].frequency;
+    sampler.filters[i].frequency = filterCenter + translation;
     sampler.filters[i].resonance = leapFilters[i].resonance;
     sampler.filterGain[i].gain.value = leapFilters[i].gain/4;
 
     //updates the user GUI knobs to reflect leap inputs
-    ls.gui.filters[i][0].value = leapFilters[i].frequency;
+    ls.gui.filters[i][0].value = filterCenter = translation;
     ls.gui.filters[i][1].value = leapFilters[i].resonance;
     ls.gui.filters[i][2].value = Math.abs(leapFilters[i].gain * 100);
   };
@@ -67,16 +78,23 @@ var leapControl = function(sampler, soundSource){
       z = frame.hands[0].palmPosition[2];
 
       //checking for undefined seems to be more consistent than fingers.length
-      //one finger for the first two filters, two for both
+      //one finger for the first two filters, two for the second, open hand for both
+
       if (frame.fingers[0] !== undefined && frame.fingers[1] === undefined){
         updateFilters(leapFilters,0,x,y,z);
         updateFilters(leapFilters,1,x,y,z);
       }else
-        if (frame.fingers[1] !== undefined){
+        if (frame.fingers[1] !== undefined && frame.fingers[2] === undefined){
           updateFilters(leapFilters,2,x,y,z);
           updateFilters(leapFilters,3,x,y,z);
-        } 
+        } else
+          if (frame.fingers[3] !== undefined || frame.fingers[4] !== undefined){
+            updateFilters(leapFilters,0,x,y,z);
+            updateFilters(leapFilters,1,x,y,z);
+            updateFilters(leapFilters,2,x,y,z);
+            updateFilters(leapFilters,3,x,y,z);
+          }
       }
-      //leapConsole(leapControlled, frame.hands[0], sampler);
+      ls.Log(leapFilters, frame.hands[0], sampler, this);
   });
 };
