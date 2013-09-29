@@ -8,7 +8,7 @@ var leapControl = function(sampler, soundSource){
   var yRange = 690;
   var zRange = 300;
   
-  var resonanceRange = [40,40,40,40];
+  var resonanceRange = [15,15,15,15];
   var filterCenter;
   var filterRange;
   var translation;
@@ -18,7 +18,7 @@ var leapControl = function(sampler, soundSource){
   var createLeapFilters = function(channels){
     var filterArray = [];
     for (var i = 0; i < channels; i ++){
-      var filter = new ls.LeapControlledFilter({frequency: 11000, resonance: 10, gain: 100});
+      var filter = new ls.LeapControlledFilter({frequency: 4000, resonance: 7, gain: 100});
       filterArray.push(filter);
     }
     return filterArray;
@@ -55,8 +55,8 @@ var leapControl = function(sampler, soundSource){
     ls.gui.filters[i][2].value = Math.abs(leapFilters[i].gain * 100);
   };
 
-  var leapFilters = createLeapFilters(4);
-  for (var i = 0; i < 4; i++ ){
+  var leapFilters = createLeapFilters(3);
+  for (var i = 0; i < 3; i++ ){
     ls.gui.filters[i][0].value = leapFilters[i].frequency;
     ls.gui.filters[i][1].value = leapFilters[i].resonance;
     ls.gui.filters[i][2].value = Math.abs(leapFilters[i].gain * 100);

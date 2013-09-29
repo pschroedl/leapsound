@@ -3,7 +3,7 @@ ls.GUI = function (sampler){
 
   this.lpCutoff = new ls.Knob({
     el: "#filter1cutoff",
-    max: 22000,
+    max: 8000,
     change: function (newVal) { 
       sampler.filters[0].frequency = newVal;
     }
@@ -11,7 +11,7 @@ ls.GUI = function (sampler){
 
   this.lpResonance = new ls.Knob({
     el: "#filter1q",
-    max: 30,
+    max: 15,
     change: function (newVal) { 
       sampler.filters[0].resonance = newVal;
     }
@@ -28,7 +28,7 @@ ls.GUI = function (sampler){
 
   this.hpCutoff = new ls.Knob({
     el: "#filter2cutoff",
-    max: 22000,
+    max: 8000,
     change: function (newVal) { 
       sampler.filters[1].frequency = newVal;
     }
@@ -36,7 +36,7 @@ ls.GUI = function (sampler){
 
   this.hpResonance = new ls.Knob({
     el: "#filter2q",
-    max: 30,
+    max: 15,
     change: function (newVal) { 
       sampler.filters[1].resonance = newVal;
     }
@@ -53,7 +53,7 @@ ls.GUI = function (sampler){
 
   this.bpCutoff = new ls.Knob({
     el: "#filter3cutoff",
-    max: 22000,
+    max: 8000,
     change: function (newVal) { 
       sampler.filters[2].frequency = newVal;
     }
@@ -61,7 +61,7 @@ ls.GUI = function (sampler){
 
   this.bpResonance = new ls.Knob({
     el: "#filter3q",
-    max: 30,
+    max: 15,
     change: function (newVal) { 
       sampler.filters[2].resonance = newVal;
     }
@@ -76,39 +76,39 @@ ls.GUI = function (sampler){
     }
   });
 
-  this.spCutoff = new ls.Knob({
-    el: "#filter4cutoff",
-    max: 22000,
-    change: function (newVal) { 
-      sampler.filters[3].frequency = newVal;
-    }
-  });
+  // this.spCutoff = new ls.Knob({
+  //   el: "#filter4cutoff",
+  //   max: 22000,
+  //   change: function (newVal) { 
+  //     sampler.filters[3].frequency = newVal;
+  //   }
+  // });
 
-  this.spResonance = new ls.Knob({
-    el: "#filter4q",
-    max: 30,
-    change: function (newVal) { 
-      sampler.filters[3].resonance = newVal;
-    }
-  });
+  // this.spResonance = new ls.Knob({
+  //   el: "#filter4q",
+  //   max: 15,
+  //   change: function (newVal) { 
+  //     sampler.filters[3].resonance = newVal;
+  //   }
+  // });
 
-  this.spGain = new ls.Knob({
-    el: "#filter4gain",
-    min: 0,
-    max: 100,
-    change: function (newVal) { 
-      sampler.filterGain[3].gain.value = newVal/100; 
-    }
-  });
+  // this.spGain = new ls.Knob({
+  //   el: "#filter4gain",
+  //   min: 0,
+  //   max: 100,
+  //   change: function (newVal) { 
+  //     sampler.filterGain[3].gain.value = newVal/100; 
+  //   }
+  // });
 
   this.filters = [];
   var lpFilter = [this.lpCutoff, this.lpResonance, this.lpGain];
   var hpFilter = [this.hpCutoff, this.hpResonance, this.hpGain];
   var bpFilter = [this.bpCutoff, this.bpResonance, this.bpGain];
-  var spFilter = [this.spCutoff, this.spResonance, this.spGain];
+  //var spFilter = [this.spCutoff, this.spResonance, this.spGain];
   this.filters.push(lpFilter);
   this.filters.push(hpFilter);
   this.filters.push(bpFilter);
-  this.filters.push(spFilter);
+  //this.filters.push(spFilter);
 
 };

@@ -101,6 +101,6 @@
     type : 'lowpass',
     frequency : 0,
     min : 0,
-    max : 22000,
+    max : 8000,
     detune : 0
   };
