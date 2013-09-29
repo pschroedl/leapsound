@@ -65,7 +65,7 @@ var leapControl = function(sampler, soundSource){
   /* Main leap control loop */
 
   Leap.loop(function(frame) {
-
+    //passes dry signal when no hands are detected
     if (frame.hands.length < 1 || frame.fingers[0] === undefined){
       sampler.dryGain.gain.value = 1;
       sampler.filterGain[0].gain.value = 0;
@@ -79,10 +79,8 @@ var leapControl = function(sampler, soundSource){
       x = frame.hands[0].palmPosition[0];
       y = frame.hands[0].palmPosition[1];
       z = frame.hands[0].palmPosition[2];
-
-      //checking for undefined seems to be more consistent than fingers.length
-      //one finger for the first two filters, two for the second, open hand for both
-
+      
+      //adjusts first filter when only one finger is present, muting all others
       if (frame.fingers[0] !== undefined && frame.fingers[1] === undefined){
         updateFilters(leapFilters,0,x,y,z);
         sampler.filterGain[1].gain.value = 0;
@@ -91,6 +89,7 @@ var leapControl = function(sampler, soundSource){
         ls.gui.filters[1][2].value = 0;
         sampler.dryGain.gain.value = 0;
       }else
+        //adjusts second filter when two fingers are present, muting all others
         if (frame.fingers[1] !== undefined && frame.fingers[2] === undefined){
           updateFilters(leapFilters,1,x,y,z);
           sampler.filterGain[0].gain.value = 0;
@@ -99,6 +98,7 @@ var leapControl = function(sampler, soundSource){
           ls.gui.filters[2][2].value = 0;
           sampler.dryGain.gain.value = 0;
         } else
+          //adjusts third filter when only three fingers are present, muting all others
           if (frame.fingers[1] !== undefined &&frame.fingers[2] !== undefined && frame.fingers[3] === undefined){
             updateFilters(leapFilters,2,x,y,z);
             sampler.filterGain[0].gain.value = 0;
@@ -107,6 +107,7 @@ var leapControl = function(sampler, soundSource){
             ls.gui.filters[1][2].value = 0;
             sampler.dryGain.gain.value = 0;
           } else
+            //controls all filters simultaneously when hand is open
             if (frame.fingers[3] !== undefined || frame.fingers[4] !== undefined){
               updateFilters(leapFilters,0,x,y,z);
               updateFilters(leapFilters,1,x,y,z);
