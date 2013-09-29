@@ -23,8 +23,8 @@
 
     Object.defineProperty(this, 'type', {
       set: function(val) {
-        this.filter.type = type;
-        this.filter2.type = type;
+        this.filter.type = val;
+        this.filter2.type = val;
       },
       get: function(){
         return this.filter.type;
