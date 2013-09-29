@@ -1,6 +1,6 @@
 describe("sampler", function() {
   var sampler;
-  var context = new AudioContext();
+  var context = ls.initAudioContext.js();
   var soundSource = audioContext.createBufferSource();
 
   beforeEach(function() {

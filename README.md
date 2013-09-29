@@ -1,8 +1,8 @@
 leapSound
 =========
 Inspired by the Z-Plane filters in hardware samplers made by Emu Systems, 
-leapSound is an implementation of four parallel filters controlled by the Leap Motion Controller, or the on-screen knobs. It utilizes the Web Audio API, and Leap Motion Javascript API, and as such, will only
-run in Google Chrome ( tested on v29.0.1547.76 ).
+leapSound is an implementation of four parallel filters controlled by the Leap Motion Controller, or the on-screen knobs. It utilizes the ( webkit ) Web Audio API, and the Leap Motion Javascript API, and as such, will only
+run in Google Chrome.
 
 The filterbank can be controlled in the 'Z-Plane' manner ( morphing multiple filters in
 different axes simultaneously) by utilizing the Leap Motion hardware
@@ -11,13 +11,7 @@ controller.
 The Y axis is set to control the filter cutoff frequency, and X and Z control
 resonance and gain, respectively.
 
-The filters employed are all Web Audio API native biQuadFilterNodes.
-
 You can play with the demo here :  http://doesntexistyet-elasticbeanstalk.com
-
-The Web Audio API spec hasn't been around too long, and this contributed to some serious
-challenges.  Particularly, the lack of documentation and examples that reflect the
-state of the current interface - as well as the existance outdated documentation and examples.
 
 This was also only partly the case with the Leap.js API  ( which has pretty
 good docs and some great examples ).  The difficulties I encountered using the
