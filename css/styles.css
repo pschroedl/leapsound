@@ -16,7 +16,7 @@ h2 {
   text-align: center;
 }
 
-h3 {
+.rowtitle {
   font-size: 22pt;
   text-align: center;
   padding: 10px;
@@ -31,6 +31,8 @@ h3 {
 
 .knobcaption{
   font-size: 18pt;
+  text-align: center;
+  padding: 10px;
 }
 
 .small{
