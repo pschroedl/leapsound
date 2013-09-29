@@ -11,5 +11,9 @@ The filters are 24db/octave or 4-pole ( made by setting up two biQuadFilters in 
 
 You can play with the demo here :  http://gator3082.hostgator.com/~schroedl/leapfilters/
 
+WARNING: I recommend turning down the volume and NOT using headphones, as the filters WILL self-oscillate at higher resonances.
+
+DISCLAIMER: I am not responsible for hearing or speaker damage.
+
 leapSound uses jqueryui-knob( https://github.com/aterrien/jQuery-Knob ) and dat.gui for the user interface
 ( https://code.google.com/p/dat-gui/ ), and jasmine for testing.
