@@ -4,20 +4,12 @@ Inspired by the Z-Plane filters in hardware samplers made by Emu Systems,
 leapSound is an implementation of four parallel filters controlled by the Leap Motion Controller, or the on-screen knobs. It utilizes the ( webkit ) Web Audio API, and the Leap Motion Javascript API, and as such, will only
 run in Google Chrome.
 
-The filterbank can be controlled in the 'Z-Plane' manner ( morphing multiple filters in
-different axes simultaneously) by utilizing the Leap Motion hardware
-controller.
+The filterbank can be controlled in a 'Z-Plane'-like manner ( morphing multiple filters simultaneously) by utilizing the Leap Motion hardware
+controller.  The Y axis ( up and down ) is set to control the filter cutoff frequency, and X and Z ( side/side , front/back ) control resonance and gain, respectively. Filters 1 and 2 can be controlled by extending one finger, 3 and 4 respond to movements while 2 fingers are extended, opening all fingers will control all filters, and motions while making a fist are ignored ( watch out for the thumb! )
 
-The Y axis is set to control the filter cutoff frequency, and X and Z control
-resonance and gain, respectively.
+The filters are 24db/octave or 4-pole ( made by setting up two biQuadFilters in series ), in memory of Robert Moog and his amazing filters.
 
-You can play with the demo here :  http://doesntexistyet-elasticbeanstalk.com
+You can play with the demo here :  http://gator3082.hostgator.com/~schroedl/leapfilters/
 
-This was also only partly the case with the Leap.js API  ( which has pretty
-good docs and some great examples ).  The difficulties I encountered using the
-Leap were mostly in the areas of interpreting and scaling the data from the
-Leap Motion Controller, as well as figuring out ways of using the data so that
-the user can interact in an intuitive way.  Also, any errors inside the leap main loop silently fail, making debugging a bit of a chore.
-
-Uses jqueryui-knob( https://github.com/aterrien/jQuery-Knob ) and dat.gui for the user interface
-( https://code.google.com/p/dat-gui/ ).
+leapSound uses jqueryui-knob( https://github.com/aterrien/jQuery-Knob ) and dat.gui for the user interface
+( https://code.google.com/p/dat-gui/ ), and jasmine for testing.
