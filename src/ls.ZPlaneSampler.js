@@ -15,15 +15,23 @@ var ZPlaneSampler = function(source, context){
   this.filterLFOs = [];
   this.splitterNode = context.createChannelSplitter(4);
   this.mergerNode = context.createChannelMerger(4);
+  var filterType;
 
   //Attach filter to the splitter then back to merger
   source.connect(this.splitterNode);
 
   for(var i = 0; i < 4; i++ ){
-    this.filters.push(new ls.Filter(context, {type:"lowpass"}));
+    if (i % 2){
+      filterType = "bandpass";
+    }else{
+      filterType = "lowpass";
+    }
+    this.filters.push(new ls.Filter(context, {type: filterType}));
     this.filterGain[i] = context.createGain();
     this.filters[i].output = this.filterGain[i];
     this.filterGain[i].connect(this.mergerNode);
+    this.filters[i].min = 0;
+    this.filters[i].max = 1000;
   }
 
   this.splitterNode.connect(this.filters[0].input, 0);
