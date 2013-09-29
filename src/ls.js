@@ -4,7 +4,7 @@ var ls = {
     
     var soundSource = audioContext.createBufferSource();
 
-    var sampler =  new ZPlaneSampler(soundSource, audioContext);
+    var sampler =  new ls.ZPlaneSampler(soundSource, audioContext);
 
   /* Load sample file over http to our buffer */
     

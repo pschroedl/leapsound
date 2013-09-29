@@ -1,4 +1,4 @@
-var ZPlaneSampler = function(source, context){
+ls.ZPlaneSampler = function(source, context){
 
   //We can't make a routing graph without a context!
   if (context === undefined){
@@ -21,11 +21,6 @@ var ZPlaneSampler = function(source, context){
   source.connect(this.splitterNode);
 
   for(var i = 0; i < 4; i++ ){
-    if (i % 2){
-      filterType = "bandpass";
-    }else{
-      filterType = "lowpass";
-    }
     this.filters.push(new ls.Filter(context, {type: filterType}));
     this.filterGain[i] = context.createGain();
     this.filters[i].output = this.filterGain[i];

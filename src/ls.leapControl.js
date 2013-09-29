@@ -45,12 +45,12 @@ var leapControl = function(sampler, soundSource){
     //todo - make logarithmic?
     leapFilters[i].gain = -((z/zRange)-1.5)/2;
     //sets values in each web audio api filter
-    sampler.filters[i].frequency = filterCenter + translation;
+    sampler.filters[i].frequency = translation;
     sampler.filters[i].resonance = leapFilters[i].resonance;
     sampler.filterGain[i].gain.value = leapFilters[i].gain/4;
 
     //updates the user GUI knobs to reflect leap inputs
-    ls.gui.filters[i][0].value = filterCenter = translation;
+    ls.gui.filters[i][0].value = translation;
     ls.gui.filters[i][1].value = leapFilters[i].resonance;
     ls.gui.filters[i][2].value = Math.abs(leapFilters[i].gain * 100);
   };
@@ -83,16 +83,22 @@ var leapControl = function(sampler, soundSource){
         updateFilters(leapFilters,0,x,y,z);
         sampler.filterGain[1].gain.value = 0;
         sampler.filterGain[2].gain.value = 0;
+        ls.gui.filters[1][2].value = 0;
+        ls.gui.filters[1][2].value = 0;
       }else
         if (frame.fingers[1] !== undefined && frame.fingers[2] === undefined){
           updateFilters(leapFilters,1,x,y,z);
           sampler.filterGain[0].gain.value = 0;
           sampler.filterGain[2].gain.value = 0;
+          ls.gui.filters[0][2].value = 0;
+          ls.gui.filters[2][2].value = 0;
         } else
           if (frame.fingers[1] !== undefined &&frame.fingers[2] !== undefined && frame.fingers[3] === undefined){
             updateFilters(leapFilters,2,x,y,z);
             sampler.filterGain[0].gain.value = 0;
             sampler.filterGain[1].gain.value = 0;
+            ls.gui.filters[0][2].value = 0;
+            ls.gui.filters[1][2].value = 0;
           } else
             if (frame.fingers[3] !== undefined || frame.fingers[4] !== undefined){
               updateFilters(leapFilters,0,x,y,z);
