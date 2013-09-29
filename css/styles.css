@@ -67,7 +67,7 @@ h3 {
 .container{
   display: block;
   border: 20px;
-  height: 850px;
+  height: 830px;
   width: 715px;
   margin-right: auto;
   margin-left: auto;
@@ -87,7 +87,6 @@ h3 {
   border-width: 2px;
   border-style: solid;
   border-radius: 10px;
-  margin-bottom: 10px;
 }
 
 .innercontrolbar{
