@@ -81,18 +81,25 @@ var leapControl = function(sampler, soundSource){
 
       if (frame.fingers[0] !== undefined && frame.fingers[1] === undefined){
         updateFilters(leapFilters,0,x,y,z);
-        updateFilters(leapFilters,1,x,y,z);
+        sampler.filterGain[1].gain.value = 0;
+        sampler.filterGain[2].gain.value = 0;
       }else
         if (frame.fingers[1] !== undefined && frame.fingers[2] === undefined){
-          updateFilters(leapFilters,2,x,y,z);
-          updateFilters(leapFilters,3,x,y,z);
+          updateFilters(leapFilters,1,x,y,z);
+          sampler.filterGain[0].gain.value = 0;
+          sampler.filterGain[2].gain.value = 0;
         } else
-          if (frame.fingers[3] !== undefined || frame.fingers[4] !== undefined){
-            updateFilters(leapFilters,0,x,y,z);
-            updateFilters(leapFilters,1,x,y,z);
+          if (frame.fingers[1] !== undefined &&frame.fingers[2] !== undefined && frame.fingers[3] === undefined){
             updateFilters(leapFilters,2,x,y,z);
-            updateFilters(leapFilters,3,x,y,z);
-          }
+            sampler.filterGain[0].gain.value = 0;
+            sampler.filterGain[1].gain.value = 0;
+          } else
+            if (frame.fingers[3] !== undefined || frame.fingers[4] !== undefined){
+              updateFilters(leapFilters,0,x,y,z);
+              updateFilters(leapFilters,1,x,y,z);
+              updateFilters(leapFilters,2,x,y,z);
+              //updateFilters(leapFilters,3,x,y,z);
+            }
       }
       ls.Log(leapFilters, frame.hands[0], sampler, this);
   });
