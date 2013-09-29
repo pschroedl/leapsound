@@ -37,7 +37,10 @@ ls.ZPlaneSampler = function(source, context){
   this.splitterNode.connect(this.filters[0].input, 0);
   this.splitterNode.connect(this.filters[1].input, 1);
   this.splitterNode.connect(this.filters[2].input, 0);
+
   this.splitterNode.connect(this.dryGain, 1);
+
+  this.dryGain.connect(this.mergerNode);
 
   this.outputGainNode = context.createGain();
   this.outputGainNode.gain.value = .3;

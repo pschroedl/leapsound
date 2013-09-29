@@ -67,6 +67,10 @@ var leapControl = function(sampler, soundSource){
   Leap.loop(function(frame) {
 
     if (frame.hands.length < 1 || frame.fingers[0] === undefined){
+      sampler.dryGain.gain.value = 1;
+      sampler.filterGain[0].gain.value = 0;
+      sampler.filterGain[1].gain.value = 0;
+      sampler.filterGain[2].gain.value = 0;
       return;
     }
 
@@ -85,6 +89,7 @@ var leapControl = function(sampler, soundSource){
         sampler.filterGain[2].gain.value = 0;
         ls.gui.filters[1][2].value = 0;
         ls.gui.filters[1][2].value = 0;
+        sampler.dryGain.gain.value = 0;
       }else
         if (frame.fingers[1] !== undefined && frame.fingers[2] === undefined){
           updateFilters(leapFilters,1,x,y,z);
@@ -92,6 +97,7 @@ var leapControl = function(sampler, soundSource){
           sampler.filterGain[2].gain.value = 0;
           ls.gui.filters[0][2].value = 0;
           ls.gui.filters[2][2].value = 0;
+          sampler.dryGain.gain.value = 0;
         } else
           if (frame.fingers[1] !== undefined &&frame.fingers[2] !== undefined && frame.fingers[3] === undefined){
             updateFilters(leapFilters,2,x,y,z);
@@ -99,12 +105,13 @@ var leapControl = function(sampler, soundSource){
             sampler.filterGain[1].gain.value = 0;
             ls.gui.filters[0][2].value = 0;
             ls.gui.filters[1][2].value = 0;
+            sampler.dryGain.gain.value = 0;
           } else
             if (frame.fingers[3] !== undefined || frame.fingers[4] !== undefined){
               updateFilters(leapFilters,0,x,y,z);
               updateFilters(leapFilters,1,x,y,z);
               updateFilters(leapFilters,2,x,y,z);
-              //updateFilters(leapFilters,3,x,y,z);
+              sampler.dryGain.gain.value = 0;
             }
       }
       ls.Log(leapFilters, frame.hands[0], sampler, this);
