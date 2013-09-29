@@ -7,6 +7,8 @@
     }
 
     this.filter = context.createBiquadFilter();
+    this.filter2 = context.createBiquadFilter();
+    this.filter.connect(this.filter2);
 
 
     if (options.type){
@@ -22,6 +24,7 @@
     Object.defineProperty(this, 'type', {
       set: function(val) {
         this.filter.type = type;
+        this.filter2.type = type;
       },
       get: function(){
         return this.filter.type;
@@ -31,6 +34,7 @@
     Object.defineProperty(this, 'frequency', {
       set: function(val) {
         this.filter.frequency.value = val;
+        this.filter2.frequency.value = val;
       },
       get: function(){
         return this.filter.frequency.value;
@@ -40,6 +44,7 @@
     Object.defineProperty(this, 'resonance', {
       set: function(val) {
         this.filter.Q.value = val;
+        this.filter2.Q.value = val;
       },
       get: function(){
         return this.filter.Q.value;
@@ -49,6 +54,7 @@
     Object.defineProperty(this, 'min', {
       set: function(val) {
         this.filter.frequency.minValue = val;
+        this.filter2.frequency.minValue = val;
       },
       get: function(){
         return this.filter.frequency.minValue;
@@ -58,6 +64,7 @@
     Object.defineProperty(this, 'max', {
       set: function(val) {
         this.filter.frequency.maxValue = val;
+        this.filter2.frequency.maxValue = val;
       },
       get: function(){
         return this.filter.frequency.maxValue;
@@ -85,7 +92,7 @@
 
     Object.defineProperty(this, 'output', {
       set: function(val) {
-        this.filter.connect(val);
+        this.filter2.connect(val);
       }
     });
   };

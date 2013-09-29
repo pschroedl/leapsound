@@ -24,7 +24,6 @@ var leapControl = function(sampler, soundSource){
     return filterArray;
   };
 
-
   var updateFilters = function(leapFilters,i,x,y,z){
     filterCenter = ls.gui.filters[i][0].value;
     filterRange = sampler.filters[i].range;
@@ -67,7 +66,7 @@ var leapControl = function(sampler, soundSource){
 
   Leap.loop(function(frame) {
 
-    if (frame.hands.length < 1){
+    if (frame.hands.length < 1 || frame.fingers[0] === undefined){
       return;
     }
 
