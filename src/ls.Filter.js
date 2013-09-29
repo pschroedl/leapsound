@@ -8,6 +8,7 @@
 
     this.filter = context.createBiquadFilter();
 
+
     if (options.type){
       this.filter.type = options.type;
     }
@@ -63,6 +64,19 @@
       }
     });
 
+    Object.defineProperty(this, 'center', {
+      get: function(){
+        return ((this.filter.frequency.maxValue - this.filter.frequency.minValue)/2) +this.filter.frequency.minValue;
+      }
+    });
+
+
+    Object.defineProperty(this, 'range', {
+      get: function(){
+        return this.filter.frequency.maxValue - this.filter.frequency.minValue;
+      }
+    });
+
     Object.defineProperty(this, 'input', {
       get: function() {
         return this.filter;
@@ -78,7 +92,7 @@
 
   ls.Filter.prototype.options = {
     type : 'lowpass',
-    frequency : 1,
+    frequency : 0,
     min : 0,
     max : 22000,
     detune : 0
