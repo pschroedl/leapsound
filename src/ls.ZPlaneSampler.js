@@ -24,6 +24,7 @@ ls.ZPlaneSampler = function(source, context){
   for(var i = 0; i < 4; i++ ){
     this.filters.push(new ls.Filter(context, {type: filterType}));
     this.filterGain[i] = context.createGain();
+    this.filterGain[i].gain.value = 0;
     this.filters[i].output = this.filterGain[i];
     this.filterGain[i].connect(this.mergerNode);
     this.filters[i].min = 0;
@@ -38,12 +39,18 @@ ls.ZPlaneSampler = function(source, context){
   this.splitterNode.connect(this.filters[1].input, 1);
   this.splitterNode.connect(this.filters[2].input, 0);
 
-  this.splitterNode.connect(this.dryGain, 1);
-
-  this.dryGain.connect(this.mergerNode);
+  //drygain needs its own allpass filter 
+  //so that timing is maintained
+  this.dryGainAllPassFilter = context.createBiquadFilter();
+  this.dryGainAllPassFilter.type = "allpass"
+  this.splitterNode.connect(this.dryGainAllPassFilter, 1);
+  this.dryGainAllPassFilter.connect(this.dryGain);
+  //this.dryGain.connect(this.mergerNode);
+  debugger;
+  this.dryGain.value = 0;
 
   this.outputGainNode = context.createGain();
-  this.outputGainNode.gain.value = .3;
+  this.outputGainNode.gain.value = .4;
   
   this.compressorNode = context.createDynamicsCompressor();
 
