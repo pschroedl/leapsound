@@ -1,5 +1,4 @@
 #leapSound
-=========
 >Creatively filter audio signals by waving your hands in the air
 Inspired by the Z-Plane filters in hardware samplers made by <a href="http://en.wikipedia.org/wiki/E-mu_Systems">E-mu Systems</a>, 
 leapSound is an implementation of three parallel filters controlled by the Leap Motion Controller, or the on-screen knobs. 
@@ -24,3 +23,4 @@ It utilizes the Web Audio API, the Leap Motion Javascript API, and jQuery.  It i
 
 ##WARNING
 I recommend turning down the volume and NOT using headphones, as higher resonances get pretty loud pretty quickly.
+
