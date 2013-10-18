@@ -20,6 +20,8 @@ Filters are selected by how many fingers you're holding out. 1 for the top filte
 
 I was hoping you'd ask.  The filters are 24db/octave or 4-pole ( made by setting up two biQuadFilters in series ), in memory of Robert Moog and his amazing synths.
 
+##Tech
+
 It utilizes the Web Audio API, the Leap Motion Javascript API, and jQuery.  It is only tested in Google Chrome.
 
 ##WARNING
