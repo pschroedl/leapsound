@@ -7,30 +7,29 @@ html {
 body {
   margin: 0;
   font-family: sans-serif;
-  font-size: 22pt;
+  font-size: 11pt;
 }
 
 
 h2 {
-  font-size: 28pt;
+  font-size: 14pt;
   text-align: center;
 }
 
 .rowtitle {
-  font-size: 22pt;
-  text-align: center;
+  font-size: 9pt;
   padding: 10px;
 }
 
 .knob{
   display: inline-block;
-  margin-left: 10px;
-  padding-top: 20px;
-  height: 198px;
+  padding-left: 5px;
+  padding-top: 10px;
+  height: 99px;
 }
 
 .knobcaption{
-  font-size: 18pt;
+  font-size: 6pt;
   text-align: center;
   padding: 10px;
 }
@@ -40,14 +39,14 @@ h2 {
 }
 
 .heading {
-  font-size: 36pt;
+  font-size: 18pt;
   color: white;
   padding-top: 10px;
   padding-left: 10px;
 }
 
 .subheading {
-  font-size: 18pt;
+  font-size: 9pt;
   color: white;
   padding-left: 10px;
   padding-bottom: 10px;
@@ -59,8 +58,8 @@ h2 {
 
 .outercontainer{
   display: block;
-  padding: 20px;
-  height: 700px;
+  padding-top: 20px;
+  height: 175px;
   width: 100%;
   margin-right: auto;
   margin-left: auto;
@@ -68,25 +67,25 @@ h2 {
 
 .container{
   display: block;
-  border: 20px;
-  height: 830px;
-  width: 715px;
+  border: 5px;
+  height: 402px;
+  width: 316px;
   margin-right: auto;
   margin-left: auto;
   border-color: black;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   border-radius: 10px;
 }
 
 .controlbar{
   display: block;
-  height: 210px;
-  width: 600px;
+  height: 94px;
+  width: 264px;
   margin-right: auto;
   margin-left: auto;
   border-color: black;
-  border-width: 2px;
+  border-width: 1px;
   border-style: solid;
   border-radius: 10px;
 }

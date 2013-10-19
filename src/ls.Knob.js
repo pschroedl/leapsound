@@ -18,8 +18,8 @@ ls.Knob = function(options) {
 ls.Knob.prototype.options = {
   min: 0,
   max: 30,
-  width: 175,
-  height: 135,
+  width: 72 ,
+  height: 56,
   angleOffset: -125,
   angleArc: 250,
   fgcolor: '#66EE66'

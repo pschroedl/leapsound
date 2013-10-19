@@ -46,7 +46,7 @@ ls.ZPlaneSampler = function(source, context){
   this.splitterNode.connect(this.dryGainAllPassFilter, 1);
   this.dryGainAllPassFilter.connect(this.dryGain);
   this.dryGain.connect(this.mergerNode);
-  debugger;
+
   this.dryGain.value = 0;
 
   this.outputGainNode = context.createGain();
