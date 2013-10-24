@@ -1,10 +1,10 @@
-#LeapSound ( currently aka : LeapFilters)
+#LeapSound ( currently aka : LeapFilters )
 >Creatively filter audio signals by waving your hands in the air
 Inspired by the Z-Plane filters in hardware samplers made by <a href="http://en.wikipedia.org/wiki/E-mu_Systems">E-mu Systems</a>, 
 leapSound is an implementation of three parallel filters controlled by the Leap Motion Controller, or the on-screen knobs.
 
 <a href="http://gator3082.hostgator.com/~schroedl/leapfilters/">Play with the demo</a> 
-( note : currently, on-screen knob control is disabled on the demo so as to allow for the dry signal to pass when no hand is present in the 'cone' of the Leap Motion controller's range )
+( note : It may take a while for the song to load, be patient )
 
 ##How do I use it?
 
