@@ -7,7 +7,9 @@ run in Google Chrome.
 
 ##How do I use it?
 
-You could just play with the on-screen knobs, but the real magic happens when you plug in a Leap Motion Controller.
+If you're going to run this locally, you need to fire up a webserver - I like to just run "python -m SimpleHTTPServer" from within the leapsound folder.
+
+You could just play with the on-screen knobs, but the real magic happens when you plug in a Leap Motion Controller ( and install the requisite software ).
 
 The filterbank is controlled in a 'Z-Plane'-like manner ( morphing multiple filters simultaneously)
 
