@@ -23,3 +23,5 @@ I was hoping you'd ask.  The filters are 24db/octave or 4-pole ( made by setting
 
 ##Warning
 I recommend turning down the volume and NOT using headphones, as higher resonances get pretty loud pretty quickly.
+
+
